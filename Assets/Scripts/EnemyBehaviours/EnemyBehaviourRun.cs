@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class EnemyBehaviourRun : StateMachineBehaviour
 {
     public bool runForward { get; set; }
 
-    public float minPlayerDetectionRadiusForward { get; set; }
-    public float maxPlayerDetectionRadiusBackward { get; set; }
+    public float minPlayerDetectionRadius { get; set; }
+    public float maxPlayerDetectionRadius { get; set; }
 
     public float forwardSpeed { get; set; }
     public float backwardSpeed { get; set; }
@@ -17,6 +18,7 @@ public class EnemyBehaviourRun : StateMachineBehaviour
     Transform _player;
 
     float _randomSide;
+    float _randomY;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -25,45 +27,20 @@ public class EnemyBehaviourRun : StateMachineBehaviour
         _player = Player.instance.transform;
 
         _randomSide = Random.Range(0, 2) == 0 ? 1 : -1;
+        _randomY = Random.Range(0f, 2f);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (!animator.GetBool("IsRunning"))
-            return;
-
-        Vector3 diff = _player.position - _transform.position;
+        Vector3 diff = _transform.position- _player.transform.position;
         diff.y = 0;
+        diff = Quaternion.Euler(Mathf.Rad2Deg * sideSpeed * Time.deltaTime * _randomSide *_randomY * Vector3.up) * diff;
 
-        _transform.RotateAround(_player.position, _randomSide * Vector3.up, Mathf.Rad2Deg * sideSpeed * Time.deltaTime / diff.magnitude);
-        //_transform.forward = Vector3.Slerp(_transform.forward, diff.normalized, 0.2f);
-        _transform.forward = diff.normalized;
+        Vector3 targetPos = _player.position + diff.normalized * Mathf.Clamp(diff.magnitude, minPlayerDetectionRadius, maxPlayerDetectionRadius) + Vector3.up * _randomY;
 
-        if (runForward)
-        {
-            if (diff.magnitude > minPlayerDetectionRadiusForward)
-            {
-                _transform.position += diff.normalized * forwardSpeed * Time.deltaTime;
-            }
-            else
-            {
-                animator.SetBool("IsRunning", false);
-            }
-        }
-        else
-        {
-            if (diff.magnitude < maxPlayerDetectionRadiusBackward)
-            {
-                _transform.position -= diff.normalized * backwardSpeed * Time.deltaTime;
-            }
-            else
-            {
-                animator.SetBool("IsRunning", false);
-            }
-        }
-        
-               
+        _transform.position = Vector3.Lerp(_transform.position, targetPos, 0.1f);
+        _transform.forward = -diff;
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

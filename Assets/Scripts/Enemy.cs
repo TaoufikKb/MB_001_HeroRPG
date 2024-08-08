@@ -8,17 +8,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] Animator _animator;
 
     [Header("Movement Settings")] 
-    [SerializeField] float _forwardSpeed;
-    [SerializeField] float _backwardSpeed;
     [SerializeField] float _sideSpeed;
     [Space]
-    [SerializeField] float _minPlayerDetectionRadiusBackward;
-    [SerializeField] float _minPlayerDetectionRadiusForward;
-    [SerializeField] float _maxPlayerDetectionRadiusBackward;
-    [SerializeField] float _maxPlayerDetectionRadiusForward;
+    [SerializeField] float _minPlayerDetectionRadius;
+    [SerializeField] float _maxPlayerDetectionRadius;
 
     EnemyBehaviourRun _behaviourRun;
-    EnemyBehaviourIdle _behaviourIdle;
     EnemyBehaviourAttack _behaviourAttack;
     EnemyBehaviourTakeDamage _behaviourTakeDamage;
 
@@ -26,7 +21,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _behaviourRun = _animator.GetBehaviour<EnemyBehaviourRun>();
-        _behaviourIdle = _animator.GetBehaviour<EnemyBehaviourIdle>();
         _behaviourAttack = _animator.GetBehaviour<EnemyBehaviourAttack>();
         _behaviourTakeDamage = _animator.GetBehaviour<EnemyBehaviourTakeDamage>();
 
@@ -35,16 +29,10 @@ public class Enemy : MonoBehaviour
 
     void InitBehaviours()
     {
-
-        _behaviourRun.forwardSpeed = _forwardSpeed;
-        _behaviourRun.backwardSpeed = _backwardSpeed;
         _behaviourRun.sideSpeed = _sideSpeed;
 
-        _behaviourRun.minPlayerDetectionRadiusForward = _minPlayerDetectionRadiusForward;
-        _behaviourRun.maxPlayerDetectionRadiusBackward = _maxPlayerDetectionRadiusBackward;
-
-        _behaviourIdle.minPlayerDetectionRadiusBackward = _minPlayerDetectionRadiusBackward;
-        _behaviourIdle.maxPlayerDetectionRadiusForward = _maxPlayerDetectionRadiusForward;
+        _behaviourRun.minPlayerDetectionRadius = _minPlayerDetectionRadius;
+        _behaviourRun.maxPlayerDetectionRadius = _maxPlayerDetectionRadius;
     }
 
     public void ApplyDamage()

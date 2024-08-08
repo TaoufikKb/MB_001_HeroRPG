@@ -50,11 +50,9 @@ MonoBehaviour:
   _animator: {fileID: 853111179173025011}
   _forwardSpeed: 4
   _backwardSpeed: 2
-  _sideSpeed: 3
-  _minPlayerDetectionRadiusBackward: 2
-  _minPlayerDetectionRadiusForward: 3
-  _maxPlayerDetectionRadiusBackward: 4
-  _maxPlayerDetectionRadiusForward: 5
+  _sideSpeed: 6
+  _minPlayerDetectionRadius: 2
+  _maxPlayerDetectionRadius: 5
 --- !u!95 &853111179173025011
 Animator:
   serializedVersion: 3

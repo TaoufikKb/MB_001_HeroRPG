@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] Animator _animator;
     [SerializeField] Weapon[] _weapons;
+    [SerializeField] Transform _weaponSlot;
 
 
     //[Header("Fight Settings")]
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
         _behaviourRun.maxSpeed = _weapon.data.movementSpeed;
         _behaviourIdle.enemyDetectionRadius = _weapon.data.range;
         _behaviourStrike.weapon = _weapon;
+        _behaviourStrike.weaponSlot = _weaponSlot;
 
         _animator.SetFloat("AttackSpeed",_weapon.data.attackSpeed);
         _animator.SetFloat("MovementSpeed", _weapon.data.movementSpeed);

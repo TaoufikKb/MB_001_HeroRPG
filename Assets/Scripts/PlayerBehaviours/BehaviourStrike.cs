@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 public class BehaviourStrike : StateMachineBehaviour
 {
     public Weapon weapon { get; set; }
+    public Transform weaponSlot { get; set; }
     public Collider targetCollider { get; set; }
 
     Transform _transform;
@@ -28,8 +29,8 @@ public class BehaviourStrike : StateMachineBehaviour
         _transform.DOMove(targetPosition, duration).SetEase(Ease.OutQuad);
         _transform.DORotateQuaternion(targetRotation, duration).SetEase(Ease.OutQuad);
 
-        weapon.transform.DOKill();
-        weapon.transform.DOScale(1,duration).SetEase(Ease.OutBack);
+        weaponSlot.DOKill();
+        weaponSlot.DOScale(1,duration).SetEase(Ease.OutBack);
 
     }
 
@@ -52,8 +53,8 @@ public class BehaviourStrike : StateMachineBehaviour
     {
         targetCollider = null;
 
-        weapon.transform.DOKill();
-        weapon.transform.DOScale(0, 0.25f).SetEase(Ease.InBack);
+        weaponSlot.DOKill();
+        weaponSlot.DOScale(0, 0.25f).SetEase(Ease.InBack);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
@@ -82,7 +83,7 @@ public class BehaviourStrike : StateMachineBehaviour
 
             if (Vector3.Dot(_transform.forward, diff.normalized) > 0)
             {
-                enemy.GetComponent<Enemy>().TakeDamage(weaponData.damage, diff.normalized * Mathf.Max(weaponData.range- diff.magnitude, 0));
+                enemy.GetComponent<Enemy>().TakeDamage(weaponData.damage, diff.normalized * Mathf.Max(weaponData.range*0.7f- diff.magnitude, 0));
 
                 Destroy(Instantiate(weaponData.hitFxPrefab, enemy.transform.position + Vector3.up, _transform.rotation), 1);
             }
