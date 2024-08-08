@@ -5,15 +5,15 @@ using UnityEngine;
 public class BehaviourRun : StateMachineBehaviour
 {
     public Joystick joystick { get; set; }
-    public Transform transform { get; set; }
     public float maxSpeed { get; set; }
 
+    Transform _transform;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        _transform=animator.transform;
+    }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -23,10 +23,10 @@ public class BehaviourRun : StateMachineBehaviour
         if (direction.magnitude > 0)
         {
             direction.Normalize();
-            Vector3 forward = Vector3.Slerp(transform.forward, direction, 0.2f);
+            Vector3 forward = Vector3.Slerp(_transform.forward, direction, 0.2f);
 
-            transform.forward = forward;
-            transform.position += direction * maxSpeed * Time.deltaTime;
+            _transform.forward = forward;
+            _transform.position += direction * maxSpeed * Time.deltaTime;
         }
         else
         {

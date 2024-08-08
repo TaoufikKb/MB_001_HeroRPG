@@ -6,15 +6,15 @@ using System.Linq;
 public class BehaviourIdle : StateMachineBehaviour
 {
     public Joystick joystick { get; set; }
-    public Transform transform { get; set; }
     public float enemyDetectionRadius { get; set; }
 
+    Transform _transform;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        _transform=animator.transform;
+    }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -28,10 +28,10 @@ public class BehaviourIdle : StateMachineBehaviour
         }
         else
         {
-            Collider[] enemiesColliders = Physics.OverlapSphere(transform.position, enemyDetectionRadius, LayerMask.GetMask("Enemy"));
+            Collider[] enemiesColliders = Physics.OverlapSphere(_transform.position, enemyDetectionRadius, LayerMask.GetMask("Enemy"));
             if (enemiesColliders.Length > 0)
             {
-                animator.GetBehaviour<BehaviourStrike>().target = enemiesColliders.OrderBy(c => Vector3.Distance(c.transform.position, transform.position)).FirstOrDefault();
+                animator.GetBehaviour<BehaviourStrike>().targetCollider = enemiesColliders.OrderBy(c => Vector3.Distance(c.transform.position, _transform.position)).FirstOrDefault();
                 animator.SetTrigger("Strike");
             }
         }

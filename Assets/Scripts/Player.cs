@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] float _maxSpeed;
 
+    //[Header("Fight Settings")]
+    //[SerializeField] float _enemyDetectionRadius;
+
     BehaviourRun _behaviourRun;
     BehaviourIdle _behaviourIdle;
     BehaviourStrike _behaviourStrike;
@@ -28,19 +31,22 @@ public class Player : MonoBehaviour
     void InitBehaviours()
     {
         _behaviourRun.joystick = Joystick.instance;
-        _behaviourRun.transform = transform;
         _behaviourRun.maxSpeed = _maxSpeed;
 
         _behaviourIdle.joystick = Joystick.instance;
-        _behaviourIdle.transform = transform;
         _behaviourIdle.enemyDetectionRadius = _weapon.range;
 
-        _behaviourStrike.transform = transform;
+        _behaviourStrike.weapon = _weapon;
     }
 
     void Update()
     {
 
+    }
+
+    public void ApplyDamage()
+    {
+        _behaviourStrike.ApplyDamage();
     }
 
 }
