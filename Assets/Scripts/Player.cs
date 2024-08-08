@@ -8,8 +8,6 @@ public class Player : MonoBehaviour
     [SerializeField] Animator _animator;
     [SerializeField] Weapon _weapon;
 
-    [Header("Movement Settings")]
-    [SerializeField] float _maxSpeed;
 
     //[Header("Fight Settings")]
     //[SerializeField] float _enemyDetectionRadius;
@@ -25,19 +23,35 @@ public class Player : MonoBehaviour
         _behaviourIdle = _animator.GetBehaviour<BehaviourIdle>();
         _behaviourStrike = _animator.GetBehaviour<BehaviourStrike>();
 
-        InitBehaviours();
+        EquipWeapon();
+        InitEvents();
     }
-
-    void InitBehaviours()
+    
+    void EquipWeapon()
     {
-        _behaviourRun.joystick = Joystick.instance;
-        _behaviourRun.maxSpeed = _maxSpeed;
-
-        _behaviourIdle.joystick = Joystick.instance;
+        _behaviourRun.maxSpeed = _weapon.movementSpeed;
         _behaviourIdle.enemyDetectionRadius = _weapon.range;
-
         _behaviourStrike.weapon = _weapon;
+
+        _animator.SetFloat("AttackSpeed",_weapon.attackSpeed);
     }
+
+    void InitEvents()
+    {
+        Joystick joystick = Joystick.instance;
+        joystick.onJoystickDrag.AddListener(() => 
+        {
+            _animator.SetFloat("DirectionX", joystick.direction.x);
+            _animator.SetFloat("DirectionZ", joystick.direction.y);
+        });
+
+        joystick.onJoystickUp.AddListener(() =>
+        {
+            _animator.SetFloat("DirectionX", 0);
+            _animator.SetFloat("DirectionZ", 0);
+        });
+    }
+
 
     void Update()
     {

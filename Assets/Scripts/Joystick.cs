@@ -8,7 +8,8 @@ public class Joystick : MonoBehaviour
 {
     public static Joystick instance;
 
-    public UnityEvent onJoystickUp {  get; private set; }
+    public UnityEvent onJoystickUp { get; private set; } = new UnityEvent();
+    public UnityEvent onJoystickDrag { get; private set; } = new UnityEvent();
     public Vector2 direction {  get; private set; }
 
     [SerializeField] Image _joystickImage;
@@ -45,6 +46,8 @@ public class Joystick : MonoBehaviour
             _innerStick.localPosition = localPos;
 
             direction = localPos / _joystickRadius;
+
+            onJoystickDrag?.Invoke();
         }
 
         else if (Input.GetMouseButtonUp(0))

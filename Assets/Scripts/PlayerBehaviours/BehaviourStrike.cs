@@ -11,34 +11,44 @@ public class BehaviourStrike : StateMachineBehaviour
     public Collider targetCollider { get; set; }
 
     Transform _transform;
-    Vector3 _targetPosition;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _transform = animator.transform;
         Vector3 diff = targetCollider.transform.position - _transform.position;
+        diff.y = 0;
 
-        _targetPosition = _transform.position + diff.normalized * Mathf.Max(0, diff.magnitude - targetCollider.bounds.extents.magnitude);
-        //_targetPosition = _transform.position + diff.normalized * Mathf.Max(0, diff.magnitude - weapon.range);
+        //Vector3 targetPosition = _transform.position + diff.normalized * Mathf.Max(0, diff.magnitude - weapon.range);
+        Vector3 targetPosition = _transform.position + diff.normalized * Mathf.Max(0, diff.magnitude - targetCollider.bounds.extents.magnitude);
+        Quaternion targetRotation = Quaternion.LookRotation(diff);
 
+        float duration = Mathf.Min(stateInfo.length, 0.25f);
         _transform.DOKill();
-        _transform.DOMove(_targetPosition, 0.25f).SetEase(Ease.OutQuad);
+        _transform.DOMove(targetPosition, duration).SetEase(Ease.OutQuad);
+        _transform.DORotateQuaternion(targetRotation, duration).SetEase(Ease.OutQuad);
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Vector3 diff = targetCollider.transform.position - _transform.position;
-        diff.y = 0;
-        _transform.forward = diff;
+        if (animator.GetBool("IsRunning"))
+            return;
+
+        if (animator.GetFloat("DirectionX") != 0 || animator.GetFloat("DirectionZ") != 0)
+        {
+            animator.SetBool("IsRunning", true);
+            _transform.DOKill();
+            targetCollider = null;
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        targetCollider = null;
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -5,33 +5,31 @@ using System.Linq;
 
 public class BehaviourIdle : StateMachineBehaviour
 {
-    public Joystick joystick { get; set; }
     public float enemyDetectionRadius { get; set; }
 
     Transform _transform;
+    BehaviourStrike _behaviourStrike;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _transform=animator.transform;
+        _transform = animator.transform;
+        _behaviourStrike = animator.GetBehaviour<BehaviourStrike>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (animator.IsInTransition(layerIndex))
-            return;
-
-        if (joystick.direction.magnitude > 0)
+        if (animator.GetFloat("DirectionX") != 0 || animator.GetFloat("DirectionZ") != 0)
         {
             animator.SetBool("IsRunning", true);
         }
-        else
+        else if (!_behaviourStrike.targetCollider)
         {
             Collider[] enemiesColliders = Physics.OverlapSphere(_transform.position, enemyDetectionRadius, LayerMask.GetMask("Enemy"));
             if (enemiesColliders.Length > 0)
             {
-                animator.GetBehaviour<BehaviourStrike>().targetCollider = enemiesColliders.OrderBy(c => Vector3.Distance(c.transform.position, _transform.position)).FirstOrDefault();
+                _behaviourStrike.targetCollider = enemiesColliders.OrderBy(c => Vector3.Distance(c.transform.position, _transform.position)).FirstOrDefault();
                 animator.SetTrigger("Strike");
             }
         }

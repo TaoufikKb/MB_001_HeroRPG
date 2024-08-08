@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BehaviourRun : StateMachineBehaviour
 {
-    public Joystick joystick { get; set; }
     public float maxSpeed { get; set; }
 
     Transform _transform;
@@ -12,13 +11,13 @@ public class BehaviourRun : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _transform=animator.transform;
+        _transform = animator.transform;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Vector3 direction = new Vector3(joystick.direction.x, 0, joystick.direction.y);
+        Vector3 direction = new Vector3(animator.GetFloat("DirectionX"), 0, animator.GetFloat("DirectionZ"));
 
         if (direction.magnitude > 0)
         {
