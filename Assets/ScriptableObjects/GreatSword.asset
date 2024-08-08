@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7754d4ec3ac618444b577403e167e011, type: 3}
   m_Name: GreatSword
   m_EditorClassIdentifier: 
-  _hitFxPrefab: {fileID: 0}
+  _slashFxPrefab: {fileID: 8525810715913317803, guid: 33b740352d84eff40a65f7dae74833d5, type: 3}
+  _hitFxPrefab: {fileID: 152628, guid: 4e42a2081531c814fa4774bd0d6b45df, type: 3}
   _damage: 5
-  _range: 6
+  _range: 3
   _attackSpeed: 1
   _movementSpeed: 3

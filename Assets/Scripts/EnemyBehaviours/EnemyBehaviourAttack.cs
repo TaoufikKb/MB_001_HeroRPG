@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class BehaviourStrike : StateMachineBehaviour
+public class EnemyBehaviourAttack : StateMachineBehaviour
 {
     public Weapon weapon { get; set; }
     public Collider targetCollider { get; set; }
@@ -78,12 +78,13 @@ public class BehaviourStrike : StateMachineBehaviour
         {
             Vector3 diff = enemy.transform.position - _transform.position;
             diff.y = 0;
+            diff.Normalize();
 
-            if (Vector3.Dot(_transform.forward, diff.normalized) > 0)
+            if (Vector3.Dot(_transform.forward, diff) > 0)
             {
                 //enemy.GetComponent<Enemy>().GetDamage();
                 enemy.transform.DOKill();
-                enemy.transform.DOMove(_transform.position + diff.normalized *Mathf.Max( weapon.data.range, diff.magnitude), 0.25f).SetEase(Ease.OutQuad);
+                enemy.transform.DOMove(_transform.position + diff * weapon.data.range, 0.25f).SetEase(Ease.OutQuad);
 
                 Destroy(Instantiate(weapon.data.hitFxPrefab, enemy.transform.position + Vector3.up, _transform.rotation), 1);
             }

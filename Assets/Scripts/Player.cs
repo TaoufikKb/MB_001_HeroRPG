@@ -69,12 +69,6 @@ public class Player : MonoBehaviour
         });
     }
 
-
-    void Update()
-    {
-
-    }
-
     public void ApplyDamage()
     {
         _behaviourStrike.ApplyDamage();

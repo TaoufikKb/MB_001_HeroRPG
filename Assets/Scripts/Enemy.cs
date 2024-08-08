@@ -4,17 +4,33 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] Animator _animator;
+
+    [Header("Movement Settings")] 
+    [SerializeField] float _maxSpeed;
+
+    EnemyBehaviourRun _behaviourRun;
+    EnemyBehaviourIdle _behaviourIdle;
+    EnemyBehaviourAttack _behaviourAttack;
+
+
     void Start()
     {
-        
+        _behaviourRun = _animator.GetBehaviour<EnemyBehaviourRun>();
+        _behaviourIdle = _animator.GetBehaviour<EnemyBehaviourIdle>();
+        _behaviourAttack = _animator.GetBehaviour<EnemyBehaviourAttack>();
+
+        InitBehaviours();
     }
 
-    // Update is called once per frame
-    void Update()
+    void InitBehaviours()
     {
-        
+        _behaviourRun.maxSpeed = _maxSpeed;
     }
 
+    public void ApplyDamage()
+    {
+        _behaviourAttack.ApplyDamage();
+    }
 
 }
