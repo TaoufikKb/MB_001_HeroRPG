@@ -70,9 +70,10 @@ public class BehaviourStrike : StateMachineBehaviour
 
     public void ApplyDamage()
     {
-        Destroy(Instantiate(weapon.data.slashFxPrefab, _transform.position + Vector3.up, _transform.rotation), 1);
+        WeaponData weaponData = weapon.data;
+        Destroy(Instantiate(weaponData.slashFxPrefab, _transform.position + Vector3.up, _transform.rotation), 1);
 
-        Collider[] enemiesColliders = Physics.OverlapSphere(_transform.position, weapon.data.range, LayerMask.GetMask("Enemy"));
+        Collider[] enemiesColliders = Physics.OverlapSphere(_transform.position, weaponData.range, LayerMask.GetMask("Enemy"));
 
         foreach (var enemy in enemiesColliders)
         {
@@ -81,11 +82,9 @@ public class BehaviourStrike : StateMachineBehaviour
 
             if (Vector3.Dot(_transform.forward, diff.normalized) > 0)
             {
-                //enemy.GetComponent<Enemy>().GetDamage();
-                enemy.transform.DOKill();
-                enemy.transform.DOMove(_transform.position + diff.normalized *Mathf.Max( weapon.data.range, diff.magnitude), 0.25f).SetEase(Ease.OutQuad);
+                enemy.GetComponent<Enemy>().TakeDamage(weaponData.damage, diff.normalized * Mathf.Max(weaponData.range- diff.magnitude, 0));
 
-                Destroy(Instantiate(weapon.data.hitFxPrefab, enemy.transform.position + Vector3.up, _transform.rotation), 1);
+                Destroy(Instantiate(weaponData.hitFxPrefab, enemy.transform.position + Vector3.up, _transform.rotation), 1);
             }
         }
     }

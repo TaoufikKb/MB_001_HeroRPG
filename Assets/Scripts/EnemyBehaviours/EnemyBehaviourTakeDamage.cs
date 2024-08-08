@@ -1,42 +1,27 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehaviourIdle : StateMachineBehaviour
+public class EnemyBehaviourTakeDamage : StateMachineBehaviour
 {
-    public float maxPlayerDetectionRadiusForward { get; set; }
-    public float minPlayerDetectionRadiusBackward { get; set; }
+    public Vector3 push { get; set; }
 
-    EnemyBehaviourRun _enemyBehaviourRun;
     Transform _transform;
-    Player _player;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _transform = animator.transform;
-        _player = Player.instance;
-        _enemyBehaviourRun = animator.GetBehaviour<EnemyBehaviourRun>();
+
+        _transform.DOKill();
+        _transform.DOMove(_transform.position + push, stateInfo.length).SetEase(Ease.OutQuad);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Vector3 diff = _player.transform.position - _transform.position;
-        diff.y = 0;
-
-        _transform.forward = diff.normalized;
-
-        if (diff.magnitude > maxPlayerDetectionRadiusForward)
-        {
-            _enemyBehaviourRun.runForward = true;
-            animator.SetBool("IsRunning", true);
-        }
-        else if (diff.magnitude < minPlayerDetectionRadiusBackward)
-        {
-            _enemyBehaviourRun.runForward = false;
-            animator.SetBool("IsRunning", true);
-        }
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

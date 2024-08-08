@@ -48,7 +48,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 853111179173025011}
-  _maxSpeed: 0
+  _forwardSpeed: 4
+  _backwardSpeed: 2
+  _sideSpeed: 3
+  _minPlayerDetectionRadiusBackward: 2
+  _minPlayerDetectionRadiusForward: 3
+  _maxPlayerDetectionRadiusBackward: 4
+  _maxPlayerDetectionRadiusForward: 5
 --- !u!95 &853111179173025011
 Animator:
   serializedVersion: 3
