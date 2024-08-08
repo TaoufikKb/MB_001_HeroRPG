@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Joystick : MonoBehaviour
 {
     public static Joystick instance;
 
+    public UnityEvent onJoystickUp {  get; private set; }
     public Vector2 direction {  get; private set; }
 
     [SerializeField] Image _joystickImage;
@@ -52,6 +54,8 @@ public class Joystick : MonoBehaviour
 
             _joystickImage.enabled = false;
             _innerStickImage.enabled = false;
+
+            onJoystickUp?.Invoke();
         }
     }
 }

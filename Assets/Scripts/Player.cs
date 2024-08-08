@@ -6,33 +6,41 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] Animator _animator;
+    [SerializeField] Weapon _weapon;
 
     [Header("Movement Settings")]
     [SerializeField] float _maxSpeed;
 
-    Joystick _joystick;
+    BehaviourRun _behaviourRun;
+    BehaviourIdle _behaviourIdle;
+    BehaviourStrike _behaviourStrike;
 
-    Vector3 _velocity;
 
     void Start()
     {
-        _joystick = Joystick.instance;
+        _behaviourRun = _animator.GetBehaviour<BehaviourRun>();
+        _behaviourIdle = _animator.GetBehaviour<BehaviourIdle>();
+        _behaviourStrike = _animator.GetBehaviour<BehaviourStrike>();
+
+        InitBehaviours();
+    }
+
+    void InitBehaviours()
+    {
+        _behaviourRun.joystick = Joystick.instance;
+        _behaviourRun.transform = transform;
+        _behaviourRun.maxSpeed = _maxSpeed;
+
+        _behaviourIdle.joystick = Joystick.instance;
+        _behaviourIdle.transform = transform;
+        _behaviourIdle.enemyDetectionRadius = _weapon.range;
+
+        _behaviourStrike.transform = transform;
     }
 
     void Update()
     {
-        UpdateMovement();
+
     }
 
-    void UpdateMovement()
-    {
-        Vector3 direction = new Vector3(_joystick.direction.x, 0, _joystick.direction.y);
-
-        _velocity = direction * _maxSpeed;
-
-        transform.forward = transform.forward * 0.001f + _velocity;
-        transform.position += _velocity * Time.deltaTime;
-
-        _animator.SetBool("IsRunning", _velocity.magnitude > 0);
-    }
 }
