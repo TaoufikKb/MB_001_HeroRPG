@@ -96,5 +96,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 3
   _range: 2
-  _attackSpeed: 3
-  _movementSpeed: 4.5
+  _attackSpeed: 2
+  _movementSpeed: 6
