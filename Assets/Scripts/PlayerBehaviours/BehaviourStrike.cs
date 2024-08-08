@@ -28,6 +28,9 @@ public class BehaviourStrike : StateMachineBehaviour
         _transform.DOMove(targetPosition, duration).SetEase(Ease.OutQuad);
         _transform.DORotateQuaternion(targetRotation, duration).SetEase(Ease.OutQuad);
 
+        weapon.transform.DOKill();
+        weapon.transform.DOScale(1,duration).SetEase(Ease.OutBack);
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -48,6 +51,9 @@ public class BehaviourStrike : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         targetCollider = null;
+
+        weapon.transform.DOKill();
+        weapon.transform.DOScale(0, 0.25f).SetEase(Ease.InBack);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
@@ -64,7 +70,9 @@ public class BehaviourStrike : StateMachineBehaviour
 
     public void ApplyDamage()
     {
-        Collider[] enemiesColliders = Physics.OverlapSphere(_transform.position, weapon.range, LayerMask.GetMask("Enemy"));
+        Destroy(Instantiate(weapon.data.slashFxPrefab, _transform.position + Vector3.up, _transform.rotation), 1);
+
+        Collider[] enemiesColliders = Physics.OverlapSphere(_transform.position, weapon.data.range, LayerMask.GetMask("Enemy"));
 
         foreach (var enemy in enemiesColliders)
         {
@@ -76,10 +84,10 @@ public class BehaviourStrike : StateMachineBehaviour
             {
                 //enemy.GetComponent<Enemy>().GetDamage();
                 enemy.transform.DOKill();
-                enemy.transform.DOMove(_transform.position + diff * weapon.range, 0.25f).SetEase(Ease.OutQuad);
+                enemy.transform.DOMove(_transform.position + diff * weapon.data.range, 0.25f).SetEase(Ease.OutQuad);
+
+                Destroy(Instantiate(weapon.data.hitFxPrefab, enemy.transform.position + Vector3.up, _transform.rotation), 1);
             }
         }
-
-
     }
 }

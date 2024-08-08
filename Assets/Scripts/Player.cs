@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
         _behaviourIdle = _animator.GetBehaviour<BehaviourIdle>();
         _behaviourStrike = _animator.GetBehaviour<BehaviourStrike>();
 
-        EquipWeapon(_weapons[Random.Range(0, _weapons.Length)]);
+        EquipWeapon(_weapons[0]);
         InitEvents();
     }
     
@@ -45,12 +45,12 @@ public class Player : MonoBehaviour
 
         _weapon = weapon;
 
-        _behaviourRun.maxSpeed = _weapon.movementSpeed;
-        _behaviourIdle.enemyDetectionRadius = _weapon.range;
+        _behaviourRun.maxSpeed = _weapon.data.movementSpeed;
+        _behaviourIdle.enemyDetectionRadius = _weapon.data.range;
         _behaviourStrike.weapon = _weapon;
 
-        _animator.SetFloat("AttackSpeed",_weapon.attackSpeed);
-        _animator.SetFloat("MovementSpeed", _weapon.movementSpeed);
+        _animator.SetFloat("AttackSpeed",_weapon.data.attackSpeed);
+        _animator.SetFloat("MovementSpeed", _weapon.data.movementSpeed);
     }
 
     void InitEvents()
