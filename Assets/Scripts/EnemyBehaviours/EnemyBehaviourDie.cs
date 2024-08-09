@@ -19,7 +19,7 @@ public class EnemyBehaviourDie : StateMachineBehaviour
         targetPosition.y = 0;
 
         _transform.DOKill();
-        _transform.DOMove(targetPosition + push, stateInfo.length).SetEase(Ease.OutQuad);
+        _transform.DOMove(targetPosition + push, 0.5f).SetEase(Ease.OutQuart);
 
         collider.enabled = false;
     }

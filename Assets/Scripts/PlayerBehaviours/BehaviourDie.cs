@@ -19,7 +19,7 @@ public class BehaviourDie : StateMachineBehaviour
         targetPosition.y = 0;
 
         _transform.DOKill();
-        _transform.DOMove(targetPosition + push, 1f).SetEase(Ease.OutQuad);
+        _transform.DOMove(targetPosition + push, 1f).SetEase(Ease.OutQuart);
 
         collider.enabled = false;
     }
