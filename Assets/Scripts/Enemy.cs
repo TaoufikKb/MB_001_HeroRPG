@@ -6,15 +6,27 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] Combat _combat;
+    [SerializeField] DamageFeedback _damageFeedback;
     [SerializeField] Animator _animator;
     [SerializeField] Collider _collider;
     [SerializeField] Transform _root;
+
+    [Space]
+    [SerializeField] GameObject _slashFxPrefab;
+    [SerializeField] GameObject _hitFxPrefab;
 
     [Header("Movement Settings")] 
     [SerializeField] float _sideSpeed;
     [Space]
     [SerializeField] float _minPlayerDetectionRadius;
     [SerializeField] float _maxPlayerDetectionRadius;
+
+    [Header("Combat Settings")]
+    [SerializeField] float _timeBetweenAttacks;
+    [SerializeField] int _damage;
+    [SerializeField] float _range;
+    [SerializeField] float _minRangeToAttack;
+    [SerializeField] float _dotHitCone;
 
     EnemyBehaviourRun _behaviourRun;
     EnemyBehaviourAttack _behaviourAttack;
@@ -41,6 +53,15 @@ public class Enemy : MonoBehaviour
         _behaviourRun.sideSpeed = _sideSpeed;
         _behaviourRun.minPlayerDetectionRadius = _minPlayerDetectionRadius;
         _behaviourRun.maxPlayerDetectionRadius = _maxPlayerDetectionRadius;
+        _behaviourRun.timeBetweenAttacks = _timeBetweenAttacks;
+        _behaviourRun.minRangeToAttack = _minRangeToAttack;
+
+        _behaviourAttack.slashFxPrefab = _slashFxPrefab;
+        _behaviourAttack.hitFxPrefab = _hitFxPrefab;
+        _behaviourAttack.damageFeedback = _damageFeedback;
+        _behaviourAttack.damage = _damage;
+        _behaviourAttack.range = _range;
+        _behaviourAttack.dotHitCone = _dotHitCone;
     }
 
 

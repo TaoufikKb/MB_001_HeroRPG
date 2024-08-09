@@ -5,6 +5,8 @@ using UnityEngine.XR;
 
 public class EnemyBehaviourRun : StateMachineBehaviour
 {
+    public float timeBetweenAttacks { get; set; }
+    public float minRangeToAttack { get; set; }
     public float minPlayerDetectionRadius { get; set; }
     public float maxPlayerDetectionRadius { get; set; }
     public float sideSpeed { get; set; }
@@ -15,6 +17,8 @@ public class EnemyBehaviourRun : StateMachineBehaviour
     float _randomSide;
     float _randomY;
 
+    float _attackTime;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -23,19 +27,30 @@ public class EnemyBehaviourRun : StateMachineBehaviour
 
         _randomSide = Random.Range(0, 2) == 0 ? 1 : -1;
         _randomY = Random.Range(0f, 2f);
+
+        _attackTime = Time.time;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Vector3 diff = _transform.position- _player.transform.position;
+        if (animator.IsInTransition(layerIndex))
+            return;
+
+        Vector3 diff = _transform.position - _player.transform.position;
         diff.y = 0;
-        diff = Quaternion.Euler(Mathf.Rad2Deg * sideSpeed * Time.deltaTime * _randomSide *_randomY * Vector3.up) * diff;
+
+        diff = Quaternion.Euler(Mathf.Rad2Deg * sideSpeed * Time.deltaTime * _randomSide * _randomY * Vector3.up) * diff;
 
         Vector3 targetPos = _player.position + diff.normalized * Mathf.Clamp(diff.magnitude, minPlayerDetectionRadius, maxPlayerDetectionRadius) + Vector3.up * _randomY;
 
         _transform.position = Vector3.Lerp(_transform.position, targetPos, 0.1f);
         _transform.forward = -diff;
+
+        if (Time.time > _attackTime + timeBetweenAttacks && diff.magnitude < minRangeToAttack)
+        {
+            animator.SetTrigger("Attack");
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

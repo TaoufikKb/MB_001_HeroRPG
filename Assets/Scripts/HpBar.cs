@@ -11,6 +11,9 @@ public class HpBar : MonoBehaviour
     [SerializeField] Slider _delayedHpSlider;
     [SerializeField] TextMeshProUGUI _hpPointsTxt;
 
+    [Header("Settings")]
+    [SerializeField] bool _doPunchOnUpdate;
+
     Camera _cam;
     Transform _worldTarget;
 
@@ -39,6 +42,12 @@ public class HpBar : MonoBehaviour
     public void UpdateValue(int hp)
     {
         _hpSlider.value = hp;
+
+        if (_doPunchOnUpdate)
+        {
+            transform.DOKill(true);
+            transform.DOPunchScale(Vector3.one * 0.25f, 0.25f);
+        }        
 
         DOTween.Kill(_delayedHpSlider);
         DOVirtual.Float(_delayedHpSlider.value, hp, 0.25f, (f) =>

@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,13 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
 
+    public new Collider collider => _collider;
+
     [SerializeField] TwoBoneIKConstraint _rightHandIK;
     [SerializeField] DamageFeedback _damageFeedback;
+    [SerializeField] Combat _combat;
     [SerializeField] Animator _animator;
+    [SerializeField] Collider _collider;
     [SerializeField] Weapon[] _weapons;
 
 
@@ -81,5 +86,24 @@ public class Player : MonoBehaviour
     public void ApplyDamage()
     {
         _behaviourStrike.ApplyDamage();
+    }
+
+    public void TakeDamage(int damage, Vector3 push)
+    {
+        if (_combat.isDeath)
+            return;
+
+        _combat.TakeDamage(damage, out bool isDeath);
+
+        if (isDeath)
+        {
+            //_behaviourDie.push = push * 5;
+            _animator.SetTrigger("Die");
+        }
+        else
+        {
+            //_behaviourTakeDamage.push = push;
+            _animator.SetTrigger("TakeDamage");
+        }
     }
 }

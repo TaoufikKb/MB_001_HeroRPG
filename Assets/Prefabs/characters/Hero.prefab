@@ -472,8 +472,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3206923099687242365}
   - component: {fileID: 1660525120215112514}
+  - component: {fileID: 3429240642911899165}
   - component: {fileID: 2645864492389377562}
   - component: {fileID: 6463066855783136276}
+  - component: {fileID: 3264490776373396164}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -512,11 +514,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rightHandIK: {fileID: 8492783615473522650}
   _damageFeedback: {fileID: 3479364350910722643, guid: ff2debf316b3ed243945485a1a29b039, type: 3}
+  _combat: {fileID: 3429240642911899165}
   _animator: {fileID: 2645864492389377562}
+  _collider: {fileID: 3264490776373396164}
   _weapons:
   - {fileID: 5805239132521326661}
   - {fileID: 864825128609866575}
   - {fileID: 7246962220707169402}
+--- !u!114 &3429240642911899165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206923099687242354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76fb50d407798b64bac8e268c4ebda66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hpBar: {fileID: 0}
+  _hpBarPosition: {fileID: 0}
+  _maxHp: 20
 --- !u!95 &2645864492389377562
 Animator:
   serializedVersion: 3
@@ -552,6 +571,20 @@ MonoBehaviour:
   - m_Rig: {fileID: 4709482007405101449}
     m_Active: 1
   m_Effectors: []
+--- !u!136 &3264490776373396164
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206923099687242354}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.25
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &3512741108777884559
 GameObject:
   m_ObjectHideFlags: 0

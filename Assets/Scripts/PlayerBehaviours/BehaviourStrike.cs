@@ -24,7 +24,7 @@ public class BehaviourStrike : StateMachineBehaviour
         Vector3 targetPosition = _transform.position + diff.normalized * Mathf.Max(0, diff.magnitude - targetCollider.bounds.extents.magnitude);
         Quaternion targetRotation = Quaternion.LookRotation(diff);
 
-        float duration = Mathf.Min(stateInfo.length, 0.25f);
+        float duration = Mathf.Min(stateInfo.length * 0.5f, 0.25f);
         _transform.DOKill();
         _transform.DOMove(targetPosition, duration).SetEase(Ease.OutQuad);
         _transform.DORotateQuaternion(targetRotation, duration).SetEase(Ease.OutQuad);

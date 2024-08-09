@@ -51,12 +51,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _combat: {fileID: 4675056324143367152}
+  _damageFeedback: {fileID: 3479364350910722643, guid: aa0b2441ac9636246bbfff487ff3c680, type: 3}
   _animator: {fileID: 853111179173025011}
   _collider: {fileID: 5117018307943604210}
   _root: {fileID: 6926839794863012749}
+  _slashFxPrefab: {fileID: 8525810715913317803, guid: 5c8498de20817054daaa1f794c3d28fb, type: 3}
+  _hitFxPrefab: {fileID: 1493123572548342, guid: 0b76d277096f4dc4fad0065918f5c9d3, type: 3}
   _sideSpeed: 6
   _minPlayerDetectionRadius: 1.5
   _maxPlayerDetectionRadius: 5
+  _timeBetweenAttacks: 3
+  _damage: 4
+  _range: 2
+  _minRangeToAttack: 5
+  _dotHitCone: 0.9
 --- !u!114 &4675056324143367152
 MonoBehaviour:
   m_ObjectHideFlags: 0
