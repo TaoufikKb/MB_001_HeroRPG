@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehaviourTakeDamage : StateMachineBehaviour
+public class EnemyBehaviourDie : StateMachineBehaviour
 {
-    public Transform root { get; set; }
+    public Collider collider { get; set; }
     public Vector3 push { get; set; }
 
     Transform _transform;
@@ -15,13 +15,13 @@ public class EnemyBehaviourTakeDamage : StateMachineBehaviour
     {
         _transform = animator.transform;
 
-        float duration = Mathf.Min(stateInfo.length, 0.25f);
-
-        root.DOKill(true);
-        root.DOPunchScale(Vector3.one * 0.5f, duration).SetEase(Ease.OutQuad);
+        Vector3 targetPosition = _transform.position;
+        targetPosition.y = 0;
 
         _transform.DOKill();
-        _transform.DOMove(_transform.position + push, duration).SetEase(Ease.OutQuad);
+        _transform.DOMove(targetPosition + push, stateInfo.length).SetEase(Ease.OutQuad);
+
+        collider.enabled = false;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

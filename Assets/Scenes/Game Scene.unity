@@ -240,6 +240,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1660525120215112514, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
+      propertyPath: _weapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 2141287867}
+    - target: {fileID: 1660525120215112514, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
+      propertyPath: _weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1939673147}
     - target: {fileID: 3206923099687242354, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
       propertyPath: m_Name
       value: Hero
@@ -1029,6 +1037,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1939673147 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 864825128609866575, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
+  m_PrefabInstance: {fileID: 337934964}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35323f5e639f8649a9fc8c48eb54f96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2058710306
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1141,17 @@ MonoBehaviour:
   _innerStickImage: {fileID: 1687686928}
   _innerStick: {fileID: 1687686927}
   _joystickRadius: 150
+--- !u!114 &2141287867 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5805239132521326661, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
+  m_PrefabInstance: {fileID: 337934964}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35323f5e639f8649a9fc8c48eb54f96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2141811028
 GameObject:
   m_ObjectHideFlags: 0

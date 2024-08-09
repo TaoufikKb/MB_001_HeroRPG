@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] Animator _animator;
     [SerializeField] Combat _combat;
+    [SerializeField] Animator _animator;
+    [SerializeField] Collider _collider;
+    [SerializeField] Transform _root;
 
     [Header("Movement Settings")] 
     [SerializeField] float _sideSpeed;
@@ -17,6 +19,7 @@ public class Enemy : MonoBehaviour
     EnemyBehaviourRun _behaviourRun;
     EnemyBehaviourAttack _behaviourAttack;
     EnemyBehaviourTakeDamage _behaviourTakeDamage;
+    EnemyBehaviourDie _behaviourDie;
 
 
     void Start()
@@ -24,17 +27,22 @@ public class Enemy : MonoBehaviour
         _behaviourRun = _animator.GetBehaviour<EnemyBehaviourRun>();
         _behaviourAttack = _animator.GetBehaviour<EnemyBehaviourAttack>();
         _behaviourTakeDamage = _animator.GetBehaviour<EnemyBehaviourTakeDamage>();
+        _behaviourDie = _animator.GetBehaviour<EnemyBehaviourDie>();
 
         InitBehaviours();
-    }
+    }    
 
     void InitBehaviours()
     {
-        _behaviourRun.sideSpeed = _sideSpeed;
+        _behaviourTakeDamage.root = _root;
 
+        _behaviourDie.collider = _collider;
+
+        _behaviourRun.sideSpeed = _sideSpeed;
         _behaviourRun.minPlayerDetectionRadius = _minPlayerDetectionRadius;
         _behaviourRun.maxPlayerDetectionRadius = _maxPlayerDetectionRadius;
     }
+
 
     public void ApplyDamage()
     {
@@ -43,9 +51,20 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage,Vector3 push)
     {
-        _behaviourTakeDamage.push = push;
-        _animator.SetTrigger("TakeDamage");
+        if (_combat.isDeath)
+            return;
 
-        _combat.TakeDamage(damage);
+        _combat.TakeDamage(damage,out bool isDeath);
+
+        if (isDeath)
+        {
+            _behaviourDie.push = push * 5;
+            _animator.SetTrigger("Die");
+        }
+        else
+        {
+            _behaviourTakeDamage.push = push;
+            _animator.SetTrigger("TakeDamage");
+        }
     }
 }

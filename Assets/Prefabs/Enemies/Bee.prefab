@@ -50,8 +50,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828316b7393b0954abb6492889537388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 853111179173025011}
   _combat: {fileID: 4675056324143367152}
+  _animator: {fileID: 853111179173025011}
+  _collider: {fileID: 5117018307943604210}
+  _root: {fileID: 6926839794863012749}
   _sideSpeed: 6
   _minPlayerDetectionRadius: 2
   _maxPlayerDetectionRadius: 5
