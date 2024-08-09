@@ -16,6 +16,6 @@ MonoBehaviour:
   _hitFxPrefab: {fileID: 1493123572548342, guid: 0b76d277096f4dc4fad0065918f5c9d3, type: 3}
   _damage: 2
   _range: 3
-  _dotHitCone: 0.8
-  _attackSpeed: 4
+  _dotHitCone: 0.9
+  _attackSpeed: 5
   _movementSpeed: 9
