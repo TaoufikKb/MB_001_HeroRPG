@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,6 +43,10 @@ public class Enemy : MonoBehaviour
         _behaviourDie = _animator.GetBehaviour<EnemyBehaviourDie>();
 
         InitBehaviours();
+
+        _root.localScale = Vector3.zero;
+        _root.DOKill(true);
+        _root.DOScale(1, 0.25f).SetEase(Ease.OutBack);
     }    
 
     void InitBehaviours()

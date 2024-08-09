@@ -40,13 +40,15 @@ public class EnemyBehaviourAttack : StateMachineBehaviour
         _transform.DOKill();
         _transform.DORotateQuaternion(targetRotation, duration).SetEase(Ease.OutQuad);
 
-
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _transform.position = Vector3.Lerp(_startPos, _endPosition, animator.GetFloat("AttackCurve"));
+        if (!animator.IsInTransition(layerIndex))
+        {
+            _transform.position = Vector3.Lerp(_startPos, _endPosition, animator.GetFloat("AttackCurve"));
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -79,10 +81,9 @@ public class EnemyBehaviourAttack : StateMachineBehaviour
         if (Vector3.Dot(_transform.forward, diff.normalized) > dotHitCone)
         {
             int dmg = Mathf.Max(0, Random.Range(damage - 1, damage + 2));
-            Player.instance.TakeDamage(dmg, diff.normalized * Mathf.Max(range * 0.7f - diff.magnitude, 0));
+            Player.instance.TakeDamage(dmg, diff.normalized * range);
 
             Destroy(Instantiate(damageFeedback).Init(dmg, _targetCollider.transform.position + Vector3.up + Random.onUnitSphere * 0.5f), 1);
-
 
             GameObject hitObj = Instantiate(hitFxPrefab, _targetCollider.transform.position + Vector3.up, _transform.rotation);
             hitObj.transform.localScale = _targetCollider.bounds.size;

@@ -1,12 +1,12 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
-using DG.Tweening;
 
-public class BehaviourRun : StateMachineBehaviour
+public class BehaviourTakeDamage : StateMachineBehaviour
 {
-    public float maxSpeed { get; set; }
+    public Transform root { get; set; }
+    public Vector3 push { get; set; }
 
     Transform _transform;
 
@@ -14,25 +14,22 @@ public class BehaviourRun : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _transform = animator.transform;
+
+        float duration = Mathf.Min(stateInfo.length, 0.25f);
+
+        root.DOKill(true);
+        root.DOPunchScale(Vector3.one * 0.25f, duration).SetEase(Ease.OutQuad);
+
+        _transform.DOKill();
+        _transform.DOMove(_transform.position + push, duration).SetEase(Ease.OutQuad);
+
+        _transform.forward = -push;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Vector3 direction = new Vector3(animator.GetFloat("DirectionX"), 0, animator.GetFloat("DirectionZ"));
-
-        if (direction.magnitude > 0)
-        {
-            direction.Normalize();
-            Vector3 forward = Vector3.Slerp(_transform.forward, direction, 0.2f);
-
-            _transform.forward = forward;
-            _transform.position += direction * maxSpeed * Time.deltaTime;
-        }
-        else
-        {
-            animator.SetBool("IsRunning", false);
-        }        
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -44,12 +41,12 @@ public class BehaviourRun : StateMachineBehaviour
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
-    //
+    //    // Implement code that processes and affects root motion
     //}
 
     // OnStateIK is called right after Animator.OnAnimatorIK()
     //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
-    //
+    //    // Implement code that sets up animation IK (inverse kinematics)
     //}
 }

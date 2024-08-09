@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] DamageFeedback _damageFeedback;
     [SerializeField] Combat _combat;
     [SerializeField] Animator _animator;
+    [SerializeField] Transform _root;
     [SerializeField] Collider _collider;
     [SerializeField] Weapon[] _weapons;
 
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour
     BehaviourRun _behaviourRun;
     BehaviourIdle _behaviourIdle;
     BehaviourStrike _behaviourStrike;
+    BehaviourTakeDamage _behaviourTakeDamage;
+    BehaviourDie _behaviourDie;
 
     Weapon _weapon;
 
@@ -38,6 +41,8 @@ public class Player : MonoBehaviour
         _behaviourRun = _animator.GetBehaviour<BehaviourRun>();
         _behaviourIdle = _animator.GetBehaviour<BehaviourIdle>();
         _behaviourStrike = _animator.GetBehaviour<BehaviourStrike>();
+        _behaviourTakeDamage = _animator.GetBehaviour<BehaviourTakeDamage>();
+        _behaviourDie = _animator.GetBehaviour<BehaviourDie>();
 
         InitBehaviours();
         EquipWeapon(_weapons[0]);
@@ -46,8 +51,10 @@ public class Player : MonoBehaviour
     
     void InitBehaviours()
     {
-        _behaviourRun.rightHandIK = _rightHandIK;
+        _behaviourIdle.rightHandIK = _rightHandIK;
         _behaviourStrike.damageFeedback = _damageFeedback;
+        _behaviourTakeDamage.root = _root;
+        _behaviourDie.collider = _collider;
     }
     void EquipWeapon(Weapon weapon)
     {
@@ -97,12 +104,12 @@ public class Player : MonoBehaviour
 
         if (isDeath)
         {
-            //_behaviourDie.push = push * 5;
+            _behaviourDie.push = push * 5;
             _animator.SetTrigger("Die");
         }
         else
         {
-            //_behaviourTakeDamage.push = push;
+            _behaviourTakeDamage.push = push;
             _animator.SetTrigger("TakeDamage");
         }
     }

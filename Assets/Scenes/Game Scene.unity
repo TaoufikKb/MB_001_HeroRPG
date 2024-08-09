@@ -240,14 +240,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 484743494290950909, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 484743494290950909, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1660525120215112514, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
       propertyPath: _weapons.Array.data[0]
       value: 
@@ -256,10 +248,6 @@ PrefabInstance:
       propertyPath: _weapons.Array.data[1]
       value: 
       objectReference: {fileID: 1496143636}
-    - target: {fileID: 1660525120215112514, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
-      propertyPath: _weapons.Array.data[2]
-      value: 
-      objectReference: {fileID: 1939673147}
     - target: {fileID: 3206923099687242354, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
       propertyPath: m_Name
       value: Hero
@@ -312,13 +300,9 @@ PrefabInstance:
       propertyPath: _hpBar
       value: 
       objectReference: {fileID: 2352029174868245401}
-    - target: {fileID: 4380822123989709715, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4380822123989709715, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
+    - target: {fileID: 3429240642911899165, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
+      propertyPath: _maxHp
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
@@ -611,7 +595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: -1634794950136158548, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
-  _maxEnemiesCount: 1
+  _maxEnemiesCount: 10
   _timeBetweenSpawns: 1
   _spawnRadius: 4
 --- !u!4 &768204271
@@ -1071,17 +1055,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1939673147 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 864825128609866575, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
-  m_PrefabInstance: {fileID: 337934964}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b35323f5e639f8649a9fc8c48eb54f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2058710306

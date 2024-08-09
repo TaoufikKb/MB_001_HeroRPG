@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using DG.Tweening;
+using UnityEngine.Animations.Rigging;
 
 public class BehaviourIdle : StateMachineBehaviour
 {
+    public TwoBoneIKConstraint rightHandIK { get; set; }
     public float enemyDetectionRadius { get; set; }
 
     Transform _transform;
@@ -15,6 +18,13 @@ public class BehaviourIdle : StateMachineBehaviour
     {
         _transform = animator.transform;
         _behaviourStrike = animator.GetBehaviour<BehaviourStrike>();
+
+        DOTween.Kill(rightHandIK);
+        DOVirtual.Float(rightHandIK.weight, 1, 0.25f, (f) =>
+        {
+            rightHandIK.weight = f;
+
+        }).SetEase(Ease.OutQuad).SetId(rightHandIK);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -36,10 +46,19 @@ public class BehaviourIdle : StateMachineBehaviour
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if (!animator.GetBool("IsRunning"))
+        {
+            DOTween.Kill(rightHandIK);
+            DOVirtual.Float(rightHandIK.weight, 0, 0.25f, (f) =>
+            {
+                rightHandIK.weight = f;
+
+            }).SetEase(Ease.OutQuad).SetId(rightHandIK);
+        }
+        
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
