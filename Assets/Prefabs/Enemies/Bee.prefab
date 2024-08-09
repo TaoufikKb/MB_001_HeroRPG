@@ -63,7 +63,7 @@ MonoBehaviour:
   _timeBetweenAttacks: 3
   _damage: 2
   _range: 2
-  _minRangeToAttack: 5
+  _minRangeToAttack: 5.1
   _dotHitCone: 0.9
 --- !u!114 &4675056324143367152
 MonoBehaviour:

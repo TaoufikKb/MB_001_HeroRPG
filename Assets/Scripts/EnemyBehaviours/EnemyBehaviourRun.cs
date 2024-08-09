@@ -47,7 +47,11 @@ public class EnemyBehaviourRun : StateMachineBehaviour
         _transform.position = Vector3.Lerp(_transform.position, targetPos, 0.1f);
         _transform.forward = -diff;
 
-        if (Time.time > _attackTime + timeBetweenAttacks && diff.magnitude < minRangeToAttack)
+        if (diff.magnitude > minRangeToAttack)
+        {
+            _attackTime = Time.time;
+        }
+        else if (Time.time > _attackTime + timeBetweenAttacks)
         {
             animator.SetTrigger("Attack");
         }
