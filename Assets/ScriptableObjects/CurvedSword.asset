@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7754d4ec3ac618444b577403e167e011, type: 3}
   m_Name: CurvedSword
   m_EditorClassIdentifier: 
-  _slashFxPrefab: {fileID: 0}
+  _slashFxPrefab: {fileID: 8525810715913317803, guid: 5c8498de20817054daaa1f794c3d28fb, type: 3}
   _hitFxPrefab: {fileID: 1493123572548342, guid: 0b76d277096f4dc4fad0065918f5c9d3, type: 3}
-  _damage: 1
-  _range: 2
-  _attackSpeed: 3
+  _damage: 2
+  _range: 3
+  _dotHitCone: 0.8
+  _attackSpeed: 4
   _movementSpeed: 9

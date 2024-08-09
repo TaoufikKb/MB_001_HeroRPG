@@ -65,7 +65,9 @@ public class BehaviourStrike : StateMachineBehaviour
     public void ApplyDamage()
     {
         WeaponData weaponData = weapon.data;
-        Destroy(Instantiate(weaponData.slashFxPrefab, _transform.position + Vector3.up, _transform.rotation), 1);
+        GameObject slashObj = Instantiate(weaponData.slashFxPrefab, _transform.position + Vector3.up, _transform.rotation);
+        slashObj.transform.localScale = weaponData.range*Vector3.one;
+        Destroy(slashObj, 1);
 
         Collider[] enemiesColliders = Physics.OverlapSphere(_transform.position, weaponData.range, LayerMask.GetMask("Enemy"));
 
@@ -74,11 +76,13 @@ public class BehaviourStrike : StateMachineBehaviour
             Vector3 diff = enemy.transform.position - _transform.position;
             diff.y = 0;
 
-            if (Vector3.Dot(_transform.forward, diff.normalized) > 0)
+            if (Vector3.Dot(_transform.forward, diff.normalized) > weaponData.dotHitCone)
             {
                 enemy.GetComponent<Enemy>().TakeDamage(weaponData.damage, diff.normalized * Mathf.Max(weaponData.range*0.7f- diff.magnitude, 0));
 
-                Destroy(Instantiate(weaponData.hitFxPrefab, enemy.transform.position + Vector3.up, _transform.rotation), 1);
+                GameObject hitObj = Instantiate(weaponData.hitFxPrefab, enemy.transform.position + Vector3.up, _transform.rotation);
+                hitObj.transform.localScale = enemy.bounds.size;
+                Destroy(hitObj, 1);
             }
         }
     }

@@ -8,6 +8,7 @@ public class WeaponData : ScriptableObject
     public GameObject slashFxPrefab => _slashFxPrefab;
     public GameObject hitFxPrefab => _hitFxPrefab;
     public float range => _range;
+    public float dotHitCone => _dotHitCone;
     public int damage => _damage;
     public float attackSpeed => _attackSpeed;
     public float movementSpeed => _movementSpeed;
@@ -18,6 +19,7 @@ public class WeaponData : ScriptableObject
     [Header("Settings")]
     [SerializeField] int _damage;
     [SerializeField] float _range;
+    [SerializeField] float _dotHitCone;
     [SerializeField] float _attackSpeed;
     [SerializeField] float _movementSpeed;
 

@@ -55,7 +55,7 @@ MonoBehaviour:
   _collider: {fileID: 5117018307943604210}
   _root: {fileID: 6926839794863012749}
   _sideSpeed: 6
-  _minPlayerDetectionRadius: 2
+  _minPlayerDetectionRadius: 1.5
   _maxPlayerDetectionRadius: 5
 --- !u!114 &4675056324143367152
 MonoBehaviour:

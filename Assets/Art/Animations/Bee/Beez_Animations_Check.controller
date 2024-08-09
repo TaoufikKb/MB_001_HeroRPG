@@ -44,7 +44,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.5
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 3
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!114 &-8335799634249896374
@@ -180,7 +180,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.5
   m_HasExitTime: 1
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 3
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &-1849321634300592895
@@ -304,8 +304,8 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: -2611796920726009090}
   - {fileID: -8805373585326413349}
+  - {fileID: -2611796920726009090}
   m_StateMachineBehaviours:
   - {fileID: -2702789356630260772}
   m_Position: {x: 50, y: 50, z: 0}
@@ -548,7 +548,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.73913044
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!114 &5524022057271264633
