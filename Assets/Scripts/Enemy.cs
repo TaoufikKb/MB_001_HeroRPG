@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] Animator _animator;
+    [SerializeField] Combat _combat;
 
     [Header("Movement Settings")] 
     [SerializeField] float _sideSpeed;
@@ -43,7 +44,8 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage,Vector3 push)
     {
         _behaviourTakeDamage.push = push;
-
         _animator.SetTrigger("TakeDamage");
+
+        _combat.TakeDamage(damage);
     }
 }

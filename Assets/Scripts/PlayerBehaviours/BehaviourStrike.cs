@@ -8,7 +8,6 @@ using UnityEngine.UIElements;
 public class BehaviourStrike : StateMachineBehaviour
 {
     public Weapon weapon { get; set; }
-    public Transform weaponSlot { get; set; }
     public Collider targetCollider { get; set; }
 
     Transform _transform;
@@ -28,9 +27,6 @@ public class BehaviourStrike : StateMachineBehaviour
         _transform.DOKill();
         _transform.DOMove(targetPosition, duration).SetEase(Ease.OutQuad);
         _transform.DORotateQuaternion(targetRotation, duration).SetEase(Ease.OutQuad);
-
-        weaponSlot.DOKill();
-        weaponSlot.DOScale(1,duration).SetEase(Ease.OutBack);
 
     }
 
@@ -52,9 +48,6 @@ public class BehaviourStrike : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         targetCollider = null;
-
-        weaponSlot.DOKill();
-        weaponSlot.DOScale(0, 0.25f).SetEase(Ease.InBack);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
