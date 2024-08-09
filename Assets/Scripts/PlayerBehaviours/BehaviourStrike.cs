@@ -9,6 +9,7 @@ public class BehaviourStrike : StateMachineBehaviour
 {
     public Weapon weapon { get; set; }
     public Collider targetCollider { get; set; }
+    public DamageFeedback damageFeedback { get; set; }
 
     Transform _transform;
 
@@ -78,7 +79,11 @@ public class BehaviourStrike : StateMachineBehaviour
 
             if (Vector3.Dot(_transform.forward, diff.normalized) > weaponData.dotHitCone)
             {
-                enemy.GetComponent<Enemy>().TakeDamage(weaponData.damage, diff.normalized * Mathf.Max(weaponData.range*0.7f- diff.magnitude, 0));
+                int damage = Mathf.Max(0, Random.Range(weaponData.damage - 1, weaponData.damage + 2));
+                enemy.GetComponent<Enemy>().TakeDamage(damage, diff.normalized * Mathf.Max(weaponData.range*0.7f- diff.magnitude, 0));
+
+                Destroy(Instantiate(damageFeedback).Init(damage, enemy.transform.position + Vector3.up + Random.onUnitSphere*0.5f), 1);
+
 
                 GameObject hitObj = Instantiate(weaponData.hitFxPrefab, enemy.transform.position + Vector3.up, _transform.rotation);
                 hitObj.transform.localScale = enemy.bounds.size;

@@ -510,8 +510,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15876da31134ab4ca0efad157cff6a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 2645864492389377562}
   _rightHandIK: {fileID: 8492783615473522650}
+  _damageFeedback: {fileID: 3479364350910722643, guid: ff2debf316b3ed243945485a1a29b039, type: 3}
+  _animator: {fileID: 2645864492389377562}
   _weapons:
   - {fileID: 5805239132521326661}
   - {fileID: 864825128609866575}

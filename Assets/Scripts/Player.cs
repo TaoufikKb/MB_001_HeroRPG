@@ -8,8 +8,9 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
 
-    [SerializeField] Animator _animator;
     [SerializeField] TwoBoneIKConstraint _rightHandIK;
+    [SerializeField] DamageFeedback _damageFeedback;
+    [SerializeField] Animator _animator;
     [SerializeField] Weapon[] _weapons;
 
 
@@ -33,10 +34,16 @@ public class Player : MonoBehaviour
         _behaviourIdle = _animator.GetBehaviour<BehaviourIdle>();
         _behaviourStrike = _animator.GetBehaviour<BehaviourStrike>();
 
+        InitBehaviours();
         EquipWeapon(_weapons[0]);
         InitEvents();
     }
     
+    void InitBehaviours()
+    {
+        _behaviourRun.rightHandIK = _rightHandIK;
+        _behaviourStrike.damageFeedback = _damageFeedback;
+    }
     void EquipWeapon(Weapon weapon)
     {
         foreach (var item in _weapons)
@@ -48,7 +55,6 @@ public class Player : MonoBehaviour
         _weapon = weapon;
 
         _behaviourRun.maxSpeed = _weapon.data.movementSpeed;
-        _behaviourRun.rightHandIK = _rightHandIK;
         _behaviourIdle.enemyDetectionRadius = _weapon.data.range;
         _behaviourStrike.weapon = _weapon;
 
