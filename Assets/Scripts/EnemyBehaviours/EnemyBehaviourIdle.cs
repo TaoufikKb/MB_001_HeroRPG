@@ -29,12 +29,10 @@ public class EnemyBehaviourIdle : StateMachineBehaviour
 
         if (diff.magnitude > maxPlayerDetectionRadiusForward)
         {
-            _enemyBehaviourRun.runForward = true;
             animator.SetBool("IsRunning", true);
         }
         else if (diff.magnitude < minPlayerDetectionRadiusBackward)
         {
-            _enemyBehaviourRun.runForward = false;
             animator.SetBool("IsRunning", true);
         }
     }

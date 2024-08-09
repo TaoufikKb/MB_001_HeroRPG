@@ -5,13 +5,8 @@ using UnityEngine.XR;
 
 public class EnemyBehaviourRun : StateMachineBehaviour
 {
-    public bool runForward { get; set; }
-
     public float minPlayerDetectionRadius { get; set; }
     public float maxPlayerDetectionRadius { get; set; }
-
-    public float forwardSpeed { get; set; }
-    public float backwardSpeed { get; set; }
     public float sideSpeed { get; set; }
 
     Transform _transform;

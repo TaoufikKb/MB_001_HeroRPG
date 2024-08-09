@@ -2,14 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class Player : MonoBehaviour
 {
     public static Player instance;
 
     [SerializeField] Animator _animator;
+    [SerializeField] TwoBoneIKConstraint _rightHandIK;
     [SerializeField] Weapon[] _weapons;
-    [SerializeField] Transform _weaponSlot;
 
 
     //[Header("Fight Settings")]
@@ -47,9 +48,9 @@ public class Player : MonoBehaviour
         _weapon = weapon;
 
         _behaviourRun.maxSpeed = _weapon.data.movementSpeed;
+        _behaviourRun.rightHandIK = _rightHandIK;
         _behaviourIdle.enemyDetectionRadius = _weapon.data.range;
         _behaviourStrike.weapon = _weapon;
-        _behaviourStrike.weaponSlot = _weaponSlot;
 
         _animator.SetFloat("AttackSpeed",_weapon.data.attackSpeed);
         _animator.SetFloat("MovementSpeed", _weapon.data.movementSpeed);
@@ -75,5 +76,4 @@ public class Player : MonoBehaviour
     {
         _behaviourStrike.ApplyDamage();
     }
-
 }
