@@ -46,4 +46,13 @@ public class Combat : MonoBehaviour
             onDeath?.Invoke();
         }
     }
+
+    public void Revive()
+    {
+        isDeath = false;
+
+        currentHp = _maxHp;
+        _hpBar.Init(_maxHp, _hpBarPosition);
+
+    }
 }

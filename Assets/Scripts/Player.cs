@@ -146,4 +146,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Revive()
+    {
+        _animator.SetTrigger("Revive");
+
+        _combat.Revive();
+    }
 }

@@ -542,8 +542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hpBar: {fileID: 0}
   _hpBarPosition: {fileID: 0}
-  _maxHp: 20
-  _doScaleDownOnDeath: 0
+  _maxHp: 1
 --- !u!95 &2645864492389377562
 Animator:
   serializedVersion: 3

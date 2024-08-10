@@ -18,5 +18,5 @@ MonoBehaviour:
   _damage: 4
   _range: 2
   _dotHitCone: 0.7
-  _attackSpeed: 2
+  _attackSpeed: 1
   _movementSpeed: 6

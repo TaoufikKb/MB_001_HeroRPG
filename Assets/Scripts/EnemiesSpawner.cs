@@ -11,6 +11,7 @@ public class EnemiesSpawner : MonoBehaviour
     [SerializeField] float _timeBetweenSpawns;
     [SerializeField] float _spawnRadius;
 
+    GameManager _gameManager;
     int _count;
     float _spawnTime;
 
@@ -18,11 +19,16 @@ public class EnemiesSpawner : MonoBehaviour
     {
         _count = 0;
         _spawnTime = Time.time- _timeBetweenSpawns;
+
+        _gameManager = GameManager.instance;
     }
 
 
     void Update()
     {
+        if (!_gameManager.isPlaying)
+            return;
+
         if (_count <_maxEnemiesCount && Time.time > _spawnTime+_timeBetweenSpawns)
         {
             _spawnTime = Time.time;

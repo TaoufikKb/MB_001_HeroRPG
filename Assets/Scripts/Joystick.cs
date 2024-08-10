@@ -19,14 +19,26 @@ public class Joystick : MonoBehaviour
     [Header("Settings")]
     [SerializeField] float _joystickRadius;
 
+    GameManager _gameManager;
+
     void Awake()
     {
         instance = this;
     }
 
+    void Start()
+    {
+        _joystickImage.enabled = false;
+        _innerStickImage.enabled = false;
+
+        _gameManager = GameManager.instance;
+    }
 
     void Update()
     {
+        if(!_gameManager.isPlaying)
+            return;
+
         if (Input.GetMouseButtonDown(0))
         {
             transform.position = Input.mousePosition;
