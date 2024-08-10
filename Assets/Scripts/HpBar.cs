@@ -13,6 +13,7 @@ public class HpBar : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] bool _doPunchOnUpdate;
+    [SerializeField] bool _doScaleDownOnDeath = true;
 
     Camera _cam;
     Transform _worldTarget;
@@ -36,7 +37,7 @@ public class HpBar : MonoBehaviour
         _hpSlider.value = _delayedHpSlider.value = maxHp;
         _hpPointsTxt.text = "" + maxHp;
 
-        _worldTarget= toFollow;
+        _worldTarget = toFollow;
     }
 
     public void UpdateValue(int hp)
@@ -47,14 +48,18 @@ public class HpBar : MonoBehaviour
         {
             transform.DOKill(true);
             transform.DOPunchScale(Vector3.one * 0.125f, 0.25f);
-        }        
+        }
 
         DOTween.Kill(_delayedHpSlider);
         DOVirtual.Float(_delayedHpSlider.value, hp, 0.25f, (f) =>
         {
             _delayedHpSlider.value = f;
 
-        }).SetDelay(0.25f).SetEase(Ease.OutQuad).SetId(_delayedHpSlider);
+        }).SetDelay(0.25f).SetEase(Ease.OutQuad).SetId(_delayedHpSlider).OnComplete(() =>
+        {
+            if (_doScaleDownOnDeath && _delayedHpSlider.value <= 0)
+                transform.DOScale(0, 0.25f).SetEase(Ease.InBack);
+        });
 
         DOTween.Kill(_hpPointsTxt);
         DOVirtual.Float(int.Parse(_hpPointsTxt.text), hp, 0.5f, (f) =>

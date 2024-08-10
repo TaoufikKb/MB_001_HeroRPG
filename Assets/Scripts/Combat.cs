@@ -15,7 +15,6 @@ public class Combat : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] int _maxHp;
-    [SerializeField] bool _doScaleDownOnDeath = true;
 
     void Awake()
     {
@@ -42,10 +41,7 @@ public class Combat : MonoBehaviour
 
         if (currentHp == 0)
         {
-            this.isDeath = isDeath = true;
-
-            if(_doScaleDownOnDeath)
-                _hpBar.transform.DOScale(0, 0.25f).SetEase(Ease.InBack);
+            this.isDeath = isDeath = true;            
 
             onDeath?.Invoke();
         }

@@ -80,7 +80,7 @@ public class BehaviourStrike : StateMachineBehaviour
             if (Vector3.Dot(_transform.forward, diff.normalized) > weaponData.dotHitCone)
             {
                 int damage = Mathf.Max(0, Random.Range(weaponData.damage - 1, weaponData.damage + 2));
-                enemy.GetComponent<Enemy>().TakeDamage(damage, diff.normalized * Mathf.Max(weaponData.range*0.9f- diff.magnitude, 0));
+                enemy.GetComponent<Enemy>().TakeDamage(damage, diff.normalized * Mathf.Max(weaponData.range * 0.9f - diff.magnitude, 0.0001f));
 
                 Destroy(Instantiate(damageFeedback).Init(damage, enemy.transform.position + Vector3.up + Random.onUnitSphere*0.5f), 1);
 
