@@ -17,7 +17,7 @@ public class EnemiesSpawner : MonoBehaviour
     void Start()
     {
         _count = 0;
-        _spawnTime = Time.time;
+        _spawnTime = Time.time- _timeBetweenSpawns;
     }
 
 

@@ -11,10 +11,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] Animator _animator;
     [SerializeField] Collider _collider;
     [SerializeField] Transform _root;
+    [SerializeField] Transform _center;
+    [SerializeField] GameObject[] _dropBoxes;
 
     [Space]
     [SerializeField] GameObject _slashFxPrefab;
     [SerializeField] GameObject _hitFxPrefab;
+    [SerializeField] GameObject _dieExplosionFx;
 
     [Header("Movement Settings")] 
     [SerializeField] float _sideSpeed;
@@ -53,7 +56,10 @@ public class Enemy : MonoBehaviour
     {
         _behaviourTakeDamage.root = _root;
 
+        _behaviourDie.center = _center;
         _behaviourDie.collider = _collider;
+        _behaviourDie.dieExplosionFx = _dieExplosionFx;
+        _behaviourDie.dropBoxes = _dropBoxes;
 
         _behaviourRun.sideSpeed = _sideSpeed;
         _behaviourRun.minPlayerDetectionRadius = _minPlayerDetectionRadius;

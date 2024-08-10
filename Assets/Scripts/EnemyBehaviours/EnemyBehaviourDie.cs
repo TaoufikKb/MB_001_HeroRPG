@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class EnemyBehaviourDie : StateMachineBehaviour
 {
+    public GameObject[] dropBoxes { get; set; }
+    public GameObject dieExplosionFx { get; set; }
+    public Transform center { get;  set; }
     public Collider collider { get; set; }
     public Vector3 push { get; set; }
 
@@ -18,10 +21,20 @@ public class EnemyBehaviourDie : StateMachineBehaviour
         Vector3 targetPosition = _transform.position;
         targetPosition.y = 0;
 
+        collider.enabled = false;
+
         _transform.DOKill();
         _transform.DOMove(targetPosition + push, 0.5f).SetEase(Ease.OutQuart);
 
-        collider.enabled = false;
+        DOVirtual.DelayedCall(stateInfo.length, () =>
+        {
+            Destroy(Instantiate(dieExplosionFx, center.position, dieExplosionFx.transform.rotation), 1);
+            Instantiate(dropBoxes[Random.Range(0, dropBoxes.Length)], center.position, _transform.rotation);
+
+            _transform.DOKill();
+            Destroy(animator.gameObject);
+        });
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

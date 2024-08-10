@@ -599,8 +599,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: -1634794950136158548, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
-  _maxEnemiesCount: 10
-  _timeBetweenSpawns: 1
+  _maxEnemiesCount: 2
+  _timeBetweenSpawns: 5
   _spawnRadius: 4
 --- !u!4 &768204271
 Transform:
@@ -801,6 +801,7 @@ GameObject:
   - component: {fileID: 1459999130}
   - component: {fileID: 1459999132}
   - component: {fileID: 1459999133}
+  - component: {fileID: 1459999129}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -808,6 +809,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!81 &1459999129
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459999128}
+  m_Enabled: 1
 --- !u!20 &1459999130
 Camera:
   m_ObjectHideFlags: 0

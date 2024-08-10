@@ -1,4 +1,5 @@
 
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,16 +10,21 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
 
+    public WeaponData currentWeaponData => _weapon.data;
     public new Collider collider => _collider;
 
     [SerializeField] TwoBoneIKConstraint _rightHandIK;
     [SerializeField] DamageFeedback _damageFeedback;
     [SerializeField] Combat _combat;
     [SerializeField] Animator _animator;
+    [SerializeField] Transform _weaponSlot;
     [SerializeField] Transform _root;
     [SerializeField] Collider _collider;
     [SerializeField] Weapon[] _weapons;
 
+    [Space]
+    [SerializeField] ParticleSystem _collectWeapnFx;
+    [SerializeField] ParticleSystem _weapnSpawnFx;
 
     //[Header("Fight Settings")]
     //[SerializeField] float _enemyDetectionRadius;
@@ -48,7 +54,7 @@ public class Player : MonoBehaviour
         EquipWeapon(_weapons[0]);
         InitEvents();
     }
-    
+
     void InitBehaviours()
     {
         _behaviourIdle.rightHandIK = _rightHandIK;
@@ -70,14 +76,18 @@ public class Player : MonoBehaviour
         _behaviourIdle.enemyDetectionRadius = _weapon.data.range;
         _behaviourStrike.weapon = _weapon;
 
-        _animator.SetFloat("AttackSpeed",_weapon.data.attackSpeed);
+        _animator.SetFloat("AttackSpeed", _weapon.data.attackSpeed);
         _animator.SetFloat("MovementSpeed", _weapon.data.movementSpeed);
+
+        _weaponSlot.localScale = Vector3.zero;
+        _weaponSlot.DOKill();
+        _weaponSlot.DOScale(_weapon.data.range, 0.5f).SetEase(Ease.OutBack);
     }
 
     void InitEvents()
     {
         Joystick joystick = Joystick.instance;
-        joystick.onJoystickDrag.AddListener(() => 
+        joystick.onJoystickDrag.AddListener(() =>
         {
             _animator.SetFloat("DirectionX", joystick.direction.x);
             _animator.SetFloat("DirectionZ", joystick.direction.y);
@@ -113,4 +123,25 @@ public class Player : MonoBehaviour
             _animator.SetTrigger("TakeDamage");
         }
     }
+
+    public void CollectWeapon(WeaponData weaponData)
+    {
+        foreach (var weapon in _weapons)
+        {
+            if (weapon.data == weaponData)
+            {
+                //Destroy(Instantiate(_collectWeapnFx, transform.position, transform.rotation), 1);
+                _collectWeapnFx.Stop();
+                _collectWeapnFx.Play();
+
+                _weapnSpawnFx.Stop();
+                _weapnSpawnFx.Play();
+
+                EquipWeapon(weapon);
+
+                return;
+            }
+        }
+    }
+
 }
