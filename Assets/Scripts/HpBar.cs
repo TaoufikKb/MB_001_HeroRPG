@@ -46,7 +46,7 @@ public class HpBar : MonoBehaviour
         if (_doPunchOnUpdate)
         {
             transform.DOKill(true);
-            transform.DOPunchScale(Vector3.one * 0.25f, 0.25f);
+            transform.DOPunchScale(Vector3.one * 0.125f, 0.25f);
         }        
 
         DOTween.Kill(_delayedHpSlider);

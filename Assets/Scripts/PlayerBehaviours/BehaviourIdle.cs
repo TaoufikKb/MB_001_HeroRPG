@@ -36,7 +36,7 @@ public class BehaviourIdle : StateMachineBehaviour
         }
         else if (!_behaviourStrike.targetCollider)
         {
-            Collider[] enemiesColliders = Physics.OverlapSphere(_transform.position, enemyDetectionRadius, LayerMask.GetMask("Enemy"));
+            Collider[] enemiesColliders = Physics.OverlapCapsule(_transform.position, _transform.position + Vector3.up * 10, enemyDetectionRadius, LayerMask.GetMask("Enemy"));
             if (enemiesColliders.Length > 0)
             {
                 _behaviourStrike.targetCollider = enemiesColliders.OrderBy(c => Vector3.Distance(c.transform.position, _transform.position)).FirstOrDefault();

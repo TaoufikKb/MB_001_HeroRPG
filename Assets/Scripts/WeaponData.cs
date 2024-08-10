@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/WeaponData", order = 1)]
 public class WeaponData : ScriptableObject
 {
+    public Sprite uiIcon => _uiIcon;
     public GameObject slashFxPrefab => _slashFxPrefab;
     public GameObject hitFxPrefab => _hitFxPrefab;
     public float range => _range;
@@ -13,6 +14,7 @@ public class WeaponData : ScriptableObject
     public float attackSpeed => _attackSpeed;
     public float movementSpeed => _movementSpeed;
 
+    [SerializeField] Sprite _uiIcon;
     [SerializeField] GameObject _slashFxPrefab;
     [SerializeField] GameObject _hitFxPrefab;
 

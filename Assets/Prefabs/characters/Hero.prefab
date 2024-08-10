@@ -523,9 +523,9 @@ MonoBehaviour:
   _root: {fileID: 8651848316717816229}
   _collider: {fileID: 3264490776373396164}
   _weapons:
-  - {fileID: 7246962220707169402}
   - {fileID: 5805239132521326661}
   - {fileID: 864825128609866575}
+  - {fileID: 7246962220707169402}
   _collectWeapnFx: {fileID: 9064873315470972095}
   _weapnSpawnFx: {fileID: 3947735943340643089}
 --- !u!114 &3429240642911899165
@@ -542,7 +542,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hpBar: {fileID: 0}
   _hpBarPosition: {fileID: 0}
-  _maxHp: 200
+  _maxHp: 20
+  _doScaleDownOnDeath: 0
 --- !u!95 &2645864492389377562
 Animator:
   serializedVersion: 3

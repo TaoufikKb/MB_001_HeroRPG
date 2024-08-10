@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
 
         if (isDeath)
         {
-            _behaviourDie.push = push * 5;
+            _behaviourDie.push = Mathf.Max(5, push.magnitude) * push.normalized;
             _animator.SetTrigger("Die");
         }
         else

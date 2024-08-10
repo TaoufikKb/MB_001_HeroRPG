@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7754d4ec3ac618444b577403e167e011, type: 3}
   m_Name: GreatSword
   m_EditorClassIdentifier: 
+  _uiIcon: {fileID: 21300000, guid: f5cd4a88c1122104580a72e04a9e4b43, type: 3}
   _slashFxPrefab: {fileID: 8525810715913317803, guid: 33b740352d84eff40a65f7dae74833d5, type: 3}
   _hitFxPrefab: {fileID: 1493123572548342, guid: 0b76d277096f4dc4fad0065918f5c9d3, type: 3}
   _damage: 11
-  _range: 6
+  _range: 5
   _dotHitCone: -999
   _attackSpeed: 0.5
   _movementSpeed: 3

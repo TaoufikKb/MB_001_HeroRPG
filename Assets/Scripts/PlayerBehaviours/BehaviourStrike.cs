@@ -70,7 +70,7 @@ public class BehaviourStrike : StateMachineBehaviour
         slashObj.transform.localScale = weaponData.range*Vector3.one;
         Destroy(slashObj, 1);
 
-        Collider[] enemiesColliders = Physics.OverlapSphere(_transform.position, weaponData.range, LayerMask.GetMask("Enemy"));
+        Collider[] enemiesColliders = Physics.OverlapCapsule(_transform.position, _transform.position+Vector3.up*10, weaponData.range, LayerMask.GetMask("Enemy"));
 
         foreach (var enemy in enemiesColliders)
         {
@@ -80,7 +80,7 @@ public class BehaviourStrike : StateMachineBehaviour
             if (Vector3.Dot(_transform.forward, diff.normalized) > weaponData.dotHitCone)
             {
                 int damage = Mathf.Max(0, Random.Range(weaponData.damage - 1, weaponData.damage + 2));
-                enemy.GetComponent<Enemy>().TakeDamage(damage, diff.normalized * Mathf.Max(weaponData.range*0.7f- diff.magnitude, 0));
+                enemy.GetComponent<Enemy>().TakeDamage(damage, diff.normalized * Mathf.Max(weaponData.range*0.9f- diff.magnitude, 0));
 
                 Destroy(Instantiate(damageFeedback).Init(damage, enemy.transform.position + Vector3.up + Random.onUnitSphere*0.5f), 1);
 

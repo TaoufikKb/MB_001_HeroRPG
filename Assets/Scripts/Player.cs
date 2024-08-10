@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
         _weapon = weapon;
 
         _behaviourRun.maxSpeed = _weapon.data.movementSpeed;
-        _behaviourIdle.enemyDetectionRadius = _weapon.data.range;
+        _behaviourIdle.enemyDetectionRadius = Mathf.Max(3, _weapon.data.range);
         _behaviourStrike.weapon = _weapon;
 
         _animator.SetFloat("AttackSpeed", _weapon.data.attackSpeed);
@@ -82,6 +82,8 @@ public class Player : MonoBehaviour
         _weaponSlot.localScale = Vector3.zero;
         _weaponSlot.DOKill();
         _weaponSlot.DOScale(_weapon.data.range, 0.5f).SetEase(Ease.OutBack);
+
+        UiManager.instance.UpdateWeaponIcon(_weapon.data);
     }
 
     void InitEvents()
@@ -114,7 +116,7 @@ public class Player : MonoBehaviour
 
         if (isDeath)
         {
-            _behaviourDie.push = push * 5;
+            _behaviourDie.push = 5 * push;
             _animator.SetTrigger("Die");
         }
         else

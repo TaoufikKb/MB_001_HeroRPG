@@ -24,7 +24,7 @@ public class EnemyBehaviourDie : StateMachineBehaviour
         collider.enabled = false;
 
         _transform.DOKill();
-        _transform.DOMove(targetPosition + push, 0.5f).SetEase(Ease.OutQuart);
+        _transform.DOMove(targetPosition + push, 0.25f).SetEase(Ease.OutQuart);
 
         DOVirtual.DelayedCall(stateInfo.length, () =>
         {
