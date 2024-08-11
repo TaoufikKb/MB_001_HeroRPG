@@ -12,6 +12,7 @@ public class EnemyBehaviourAttack : StateMachineBehaviour
     public GameObject hitFxPrefab { get; set; }
     public float range { get; set; }
     public float dotHitCone { get; set; }
+    public float pushPower { get; set; }
     public int damage { get; set; }
 
     Transform _transform;
@@ -81,7 +82,7 @@ public class EnemyBehaviourAttack : StateMachineBehaviour
         if (Vector3.Dot(_transform.forward, diff.normalized) > dotHitCone)
         {
             int dmg = Mathf.Max(0, Random.Range(damage - 1, damage + 2));
-            Player.instance.TakeDamage(dmg, diff.normalized * range);
+            Player.instance.TakeDamage(dmg, diff.normalized * pushPower);
 
             Destroy(Instantiate(damageFeedback).Init(dmg, _targetCollider.transform.position + Vector3.up + Random.onUnitSphere * 0.5f), 1);
 

@@ -25,8 +25,8 @@ public class Player : MonoBehaviour
     [SerializeField] ParticleSystem _collectWeapnFx;
     [SerializeField] ParticleSystem _weapnSpawnFx;
 
-    //[Header("Fight Settings")]
-    //[SerializeField] float _enemyDetectionRadius;
+    [Header("Fight Settings")]
+    [SerializeField] float _takeDamagePushThreshold;
 
     BehaviourRun _behaviourRun;
     BehaviourIdle _behaviourIdle;
@@ -115,13 +115,20 @@ public class Player : MonoBehaviour
 
         if (isDeath)
         {
-            _behaviourDie.push = 5 * push;
+            _behaviourDie.push = Mathf.Max(5, push.magnitude) * push.normalized;
             _animator.SetTrigger("Die");
         }
         else
         {
-            _behaviourTakeDamage.push = push;
-            _animator.SetTrigger("TakeDamage");
+            if (push.magnitude > _takeDamagePushThreshold)
+            {
+                _behaviourTakeDamage.push = push;
+                _animator.SetTrigger("TakeDamageHeavy");
+            }
+            else
+            {
+                _animator.SetTrigger("TakeDamageLight");
+            }
         }
     }
 

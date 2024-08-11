@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     [Header("Combat Settings")]
     [SerializeField] float _timeBetweenAttacks;
     [SerializeField] int _damage;
+    [SerializeField] float _pushPower;
     [SerializeField] float _range;
     [SerializeField] float _minRangeToAttack;
     [SerializeField] float _dotHitCone;
@@ -71,6 +72,7 @@ public class Enemy : MonoBehaviour
         _behaviourAttack.hitFxPrefab = _hitFxPrefab;
         _behaviourAttack.damageFeedback = _damageFeedback;
         _behaviourAttack.damage = _damage;
+        _behaviourAttack.pushPower = _pushPower;
         _behaviourAttack.range = _range;
         _behaviourAttack.dotHitCone = _dotHitCone;
     }
