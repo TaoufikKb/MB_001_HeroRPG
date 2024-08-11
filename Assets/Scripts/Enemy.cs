@@ -12,7 +12,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] Collider _collider;
     [SerializeField] Transform _root;
     [SerializeField] Transform _center;
+
+    [Space]
+    [SerializeField] GameObject _dropSkillPointPrefab;
     [SerializeField] GameObject[] _dropBoxes;
+
 
     [Space]
     [SerializeField] GameObject _slashFxPrefab;
@@ -34,13 +38,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] float _dotHitCone;
     [Space]
     [SerializeField] float _takeDamagePushThreshold;
+    [SerializeField] int _dropSkillPointsCount;
     [SerializeField,Range(0,100)] int _dropBoxPercentage;
 
     EnemyBehaviourRun _behaviourRun;
     EnemyBehaviourAttack _behaviourAttack;
     EnemyBehaviourTakeDamage _behaviourTakeDamage;
     EnemyBehaviourDie _behaviourDie;
-
 
     void Start()
     {
@@ -63,8 +67,10 @@ public class Enemy : MonoBehaviour
         _behaviourDie.center = _center;
         _behaviourDie.collider = _collider;
         _behaviourDie.dieExplosionFx = _dieExplosionFx;
-        _behaviourDie.dropBoxes = _dropBoxes;
+        _behaviourDie.dropBoxesPrefabs = _dropBoxes;
         _behaviourDie.dropBoxPercentage = _dropBoxPercentage;
+        _behaviourDie.dropSkillPointPrefab = _dropSkillPointPrefab;
+        _behaviourDie.dropSkillPointsCount = _dropSkillPointsCount;
 
         _behaviourRun.sideSpeed = _sideSpeed;
         _behaviourRun.minPlayerDetectionRadius = _minPlayerDetectionRadius;

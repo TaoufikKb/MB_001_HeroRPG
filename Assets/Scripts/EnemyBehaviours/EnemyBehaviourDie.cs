@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class EnemyBehaviourDie : StateMachineBehaviour
 {
-    public GameObject[] dropBoxes { get; set; }
+    public GameObject[] dropBoxesPrefabs { get; set; }
+    public GameObject dropSkillPointPrefab { get; set; }
     public GameObject dieExplosionFx { get; set; }
     public Transform center { get;  set; }
     public Collider collider { get; set; }
     public Vector3 push { get; set; }
     public int dropBoxPercentage { get; set; }
+    public int dropSkillPointsCount { get; set; }
 
     Transform _transform;
 
@@ -33,7 +35,12 @@ public class EnemyBehaviourDie : StateMachineBehaviour
 
             if (Random.Range(1,101) <= dropBoxPercentage)
             {
-                Instantiate(dropBoxes[Random.Range(0, dropBoxes.Length)], center.position, _transform.rotation, Level.dropBoxesHolder);
+                Instantiate(dropBoxesPrefabs[Random.Range(0, dropBoxesPrefabs.Length)], center.position, _transform.rotation, Level.dropsHolder);
+            }
+
+            for (int i = 0; i < dropSkillPointsCount; i++)
+            {
+                Instantiate(dropSkillPointPrefab, center.position, _transform.rotation, Level.dropsHolder);
             }
 
             _transform.DOKill();

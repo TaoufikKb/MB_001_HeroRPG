@@ -4,12 +4,12 @@ using UnityEngine;
 using DG.Tweening;
 using System.Linq;
 
-public class SwordDropBox : MonoBehaviour
+public class SwordDropBox : MonoBehaviour,ICollectible
 {
     [SerializeField] GameObject _collectFx;
     [SerializeField] WeaponData[] _weaponsData;
 
-    bool _opened = false;
+    bool _isCollected = false;
 
     void Start()
     {
@@ -24,24 +24,24 @@ public class SwordDropBox : MonoBehaviour
         transform.DOScale(1, 0.25f).SetEase(Ease.OutBack);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void Collect()
     {
-        if (!_opened && other.CompareTag("Player"))
-        {
-            _opened = true;
+        if (_isCollected)
+            return;
 
-            Player player = Player.instance;
-            WeaponData[] newWeaponsData = _weaponsData.Where((w) => w != player.currentWeaponData).ToArray();
+        _isCollected = true;
 
-            int index = Random.Range(0, newWeaponsData.Length);
-            WeaponData weaponData = newWeaponsData[index];
+        Player player = Player.instance;
+        WeaponData[] newWeaponsData = _weaponsData.Where((w) => w != player.currentWeaponData).ToArray();
 
-            player.CollectWeapon(weaponData);
+        int index = Random.Range(0, newWeaponsData.Length);
+        WeaponData weaponData = newWeaponsData[index];
 
-            Destroy(Instantiate(_collectFx, transform.position + Vector3.up, transform.rotation), 1);
+        player.CollectWeapon(weaponData);
 
-            transform.DOKill();
-            Destroy(gameObject);
-        }
+        Destroy(Instantiate(_collectFx, transform.position + Vector3.up, transform.rotation), 1);
+
+        transform.DOKill();
+        Destroy(gameObject);
     }
 }

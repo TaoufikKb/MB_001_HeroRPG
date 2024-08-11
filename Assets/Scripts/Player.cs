@@ -167,4 +167,13 @@ public class Player : MonoBehaviour
 
         _combat.ResetStats();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.CompareTag("Collectible"))
+        {
+            other.GetComponent<ICollectible>().Collect();
+        }
+    }
 }

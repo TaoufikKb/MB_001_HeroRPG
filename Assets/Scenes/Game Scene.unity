@@ -376,13 +376,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1660525120215112514, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
+      propertyPath: _weapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 584703657}
+    - target: {fileID: 1660525120215112514, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
+      propertyPath: _weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1856150885}
     - target: {fileID: 3206923099687242354, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
       propertyPath: m_Name
       value: Hero
       objectReference: {fileID: 0}
     - target: {fileID: 3206923099687242365, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3206923099687242365, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -916,6 +924,17 @@ MonoBehaviour:
   _endGameUI: {fileID: 1194787839318831071}
   _startGameUI: {fileID: 920776017}
   _weaponIcon: {fileID: 2772215007188726579}
+--- !u!114 &584703657 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5805239132521326661, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
+  m_PrefabInstance: {fileID: 337934964}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35323f5e639f8649a9fc8c48eb54f96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &768204269
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,7 +986,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &920776016
 GameObject:
@@ -1920,7 +1939,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1575475738}
   m_Layer: 0
-  m_Name: DropBoxes Holder
+  m_Name: Drops Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2056,6 +2075,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1856150885 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 864825128609866575, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
+  m_PrefabInstance: {fileID: 337934964}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35323f5e639f8649a9fc8c48eb54f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2026574071
@@ -18296,6 +18326,7 @@ MonoBehaviour:
   _hpSlider: {fileID: 2772215005878016779}
   _delayedHpSlider: {fileID: 1499697379}
   _hpPointsTxt: {fileID: 1419658935}
+  _verticalBar: {fileID: 0}
   _doPunchOnUpdate: 1
   _doScaleDownOnDeath: 0
 --- !u!114 &2772215006536976914
@@ -18622,7 +18653,7 @@ GameObject:
   - component: {fileID: 4164091122800026315}
   - component: {fileID: 6700093536603050128}
   m_Layer: 0
-  m_Name: Combat_environment
+  m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18641,4 +18672,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _floor: {fileID: 1244021809}
-  _dropBoxesHolder: {fileID: 1575475738}
+  _dropsHolder: {fileID: 1575475738}

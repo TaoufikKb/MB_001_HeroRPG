@@ -32,6 +32,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -1634794950136158548, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
+      propertyPath: _dropSkillPointsCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -1634794950136158548, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
       propertyPath: _takeDamagePushThreshold
       value: 1.5
       objectReference: {fileID: 0}
@@ -119,6 +123,34 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b16cb97c9ed427643946210563ff383b, type: 2}
+    - target: {fileID: 7181414371075250608, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
+      propertyPath: m_Time
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181414371075250608, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181414371075250608, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.89338535
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181414371075250608, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181414371075250608, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0.52112675
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181414371075250608, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181414371075250608, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7460541297792940854, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
