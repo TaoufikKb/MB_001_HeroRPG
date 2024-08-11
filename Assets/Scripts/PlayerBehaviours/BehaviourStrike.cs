@@ -67,10 +67,10 @@ public class BehaviourStrike : StateMachineBehaviour
     {
         WeaponData weaponData = weapon.data;
         GameObject slashObj = Instantiate(weaponData.slashFxPrefab, _transform.position + Vector3.up, _transform.rotation);
-        slashObj.transform.localScale = weaponData.range*Vector3.one;
+        slashObj.transform.localScale = weaponData.range * Vector3.one;
         Destroy(slashObj, 1);
 
-        Collider[] enemiesColliders = Physics.OverlapCapsule(_transform.position, _transform.position+Vector3.up*10, weaponData.range, LayerMask.GetMask("Enemy"));
+        Collider[] enemiesColliders = Physics.OverlapCapsule(_transform.position, _transform.position + Vector3.up * 10, weaponData.range, LayerMask.GetMask("Enemy"));
 
         foreach (var enemy in enemiesColliders)
         {
@@ -80,9 +80,9 @@ public class BehaviourStrike : StateMachineBehaviour
             if (Vector3.Dot(_transform.forward, diff.normalized) > weaponData.dotHitCone)
             {
                 int damage = Mathf.Max(0, Random.Range(weaponData.damage - 1, weaponData.damage + 2));
-                enemy.GetComponent<Enemy>().TakeDamage(damage, diff.normalized * Mathf.Max(weaponData.range * 0.9f - diff.magnitude, 0.0001f));
+                enemy.GetComponent<Enemy>().TakeDamage(damage, weaponData.push, diff.normalized);
 
-                Destroy(Instantiate(damageFeedback).Init(damage, enemy.transform.position + Vector3.up + Random.onUnitSphere*0.5f), 1);
+                Destroy(Instantiate(damageFeedback).Init(damage, enemy.transform.position + Vector3.up + Random.onUnitSphere * 0.5f), 1);
 
 
                 GameObject hitObj = Instantiate(weaponData.hitFxPrefab, enemy.transform.position + Vector3.up, _transform.rotation);

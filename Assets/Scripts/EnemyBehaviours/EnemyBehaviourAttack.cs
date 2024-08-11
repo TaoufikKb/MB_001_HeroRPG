@@ -82,7 +82,7 @@ public class EnemyBehaviourAttack : StateMachineBehaviour
         if (Vector3.Dot(_transform.forward, diff.normalized) > dotHitCone)
         {
             int dmg = Mathf.Max(0, Random.Range(damage - 1, damage + 2));
-            Player.instance.TakeDamage(dmg, diff.normalized * pushPower);
+            Player.instance.TakeDamage(dmg, pushPower, diff.normalized);
 
             Destroy(Instantiate(damageFeedback).Init(dmg, _targetCollider.transform.position + Vector3.up + Random.onUnitSphere * 0.5f), 1);
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemiesSpawner : MonoBehaviour
 {
-    [SerializeField] Enemy _enemyPrefab;
+    [SerializeField] Enemy[] _enemyPrefabs;
 
     [Header("Settings")]
     [SerializeField] int _maxEnemiesCount;
@@ -45,7 +45,7 @@ public class EnemiesSpawner : MonoBehaviour
         rand.Normalize();
 
         Vector3 position = Player.instance.transform.position + rand * _spawnRadius;
-        Instantiate(_enemyPrefab, position, Quaternion.identity, transform);
+        Instantiate(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Length)], position, Quaternion.identity, transform);
     }
 
     public void ClearAllEnemies()

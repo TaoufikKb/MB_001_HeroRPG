@@ -32,6 +32,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] float _range;
     [SerializeField] float _minRangeToAttack;
     [SerializeField] float _dotHitCone;
+    [Space]
+    [SerializeField] float _takeDamagePushThreshold;
 
     EnemyBehaviourRun _behaviourRun;
     EnemyBehaviourAttack _behaviourAttack;
@@ -83,7 +85,7 @@ public class Enemy : MonoBehaviour
         _behaviourAttack.ApplyDamage();
     }
 
-    public void TakeDamage(int damage,Vector3 push)
+    public void TakeDamage(int damage,float push,Vector3 direction)
     {
         if (_combat.isDeath)
             return;
@@ -92,12 +94,12 @@ public class Enemy : MonoBehaviour
 
         if (isDeath)
         {
-            _behaviourDie.push = Mathf.Max(3, push.magnitude) * push.normalized;
+            _behaviourDie.push = Mathf.Max(3, push*2) * direction;
             _animator.SetTrigger("Die");
         }
         else
         {
-            _behaviourTakeDamage.push = push;
+            _behaviourTakeDamage.push = Mathf.Max(0, (push - _takeDamagePushThreshold)) * direction;
             _animator.SetTrigger("TakeDamage");
         }
     }

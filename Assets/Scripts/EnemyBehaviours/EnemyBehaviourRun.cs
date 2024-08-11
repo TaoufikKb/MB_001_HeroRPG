@@ -40,7 +40,7 @@ public class EnemyBehaviourRun : StateMachineBehaviour
         Vector3 diff = _transform.position - _player.transform.position;
         diff.y = 0;
 
-        diff = Quaternion.Euler(Mathf.Rad2Deg * sideSpeed * Time.deltaTime * _randomSide * _randomY * Vector3.up) * diff;
+        diff = Quaternion.Euler(Mathf.Rad2Deg * (Mathf.Lerp(sideSpeed * 0.5f, sideSpeed, _randomY * 0.5f)) * Time.deltaTime * _randomSide * Vector3.up) * diff;
 
         Vector3 targetPos = _player.position + diff.normalized * Mathf.Clamp(diff.magnitude, minPlayerDetectionRadius, maxPlayerDetectionRadius) + Vector3.up * _randomY;
 

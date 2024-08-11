@@ -11,6 +11,7 @@ public class WeaponData : ScriptableObject
     public float range => _range;
     public float dotHitCone => _dotHitCone;
     public int damage => _damage;
+    public float push => _push;
     public float attackSpeed => _attackSpeed;
     public float movementSpeed => _movementSpeed;
 
@@ -21,6 +22,7 @@ public class WeaponData : ScriptableObject
     [Header("Settings")]
     [SerializeField] int _damage;
     [SerializeField] float _range;
+    [SerializeField] float _push;
     [SerializeField] float _dotHitCone;
     [SerializeField] float _attackSpeed;
     [SerializeField] float _movementSpeed;

@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
         _behaviourStrike.ApplyDamage();
     }
 
-    public void TakeDamage(int damage, Vector3 push)
+    public void TakeDamage(int damage, float push,Vector3 direction)
     {
         if (_combat.isDeath)
             return;
@@ -115,14 +115,14 @@ public class Player : MonoBehaviour
 
         if (isDeath)
         {
-            _behaviourDie.push = Mathf.Max(5, push.magnitude) * push.normalized;
+            _behaviourDie.push = Mathf.Max(5, push*2) * direction;
             _animator.SetTrigger("Die");
         }
         else
         {
-            if (push.magnitude > _takeDamagePushThreshold)
+            if (push > _takeDamagePushThreshold)
             {
-                _behaviourTakeDamage.push = push;
+                _behaviourTakeDamage.push = (push - _takeDamagePushThreshold) * direction;
                 _animator.SetTrigger("TakeDamageHeavy");
             }
             else
