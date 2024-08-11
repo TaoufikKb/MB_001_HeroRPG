@@ -947,14 +947,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefabs:
   - enemyPrefab: {fileID: 6760085306853012303, guid: c8f546a5bd5dd0846818f48e472d0236, type: 3}
-    spawnRatePercentage: 60
+    spawnRatePercentage: 80
   - enemyPrefab: {fileID: 6338573719874630288, guid: 4263d58e2f8676147b7866e7bb0b197d, type: 3}
-    spawnRatePercentage: 30
+    spawnRatePercentage: 15
   - enemyPrefab: {fileID: 6760085306853012303, guid: 219b257b70b4f7141b0775300478e6f9, type: 3}
-    spawnRatePercentage: 10
+    spawnRatePercentage: 5
   _maxEnemiesCount: 100
   _timeBetweenSpawns: 1
-  _spawnRadius: 4
+  _spawnRadius: 25
 --- !u!4 &768204271
 Transform:
   m_ObjectHideFlags: 0

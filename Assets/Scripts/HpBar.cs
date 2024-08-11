@@ -10,6 +10,7 @@ public class HpBar : MonoBehaviour
     [SerializeField] Slider _hpSlider;
     [SerializeField] Slider _delayedHpSlider;
     [SerializeField] TextMeshProUGUI _hpPointsTxt;
+    [SerializeField] Transform _verticalBar;
 
     [Header("Settings")]
     [SerializeField] bool _doPunchOnUpdate;
@@ -38,6 +39,14 @@ public class HpBar : MonoBehaviour
         _hpPointsTxt.text = "" + maxHp;
 
         _worldTarget = toFollow;
+
+        if (_verticalBar)
+        {
+            for (int i = 1; i < maxHp/5; i++)
+            {
+                Instantiate(_verticalBar, _verticalBar.parent);
+            }
+        }        
     }
 
     public void UpdateValue(int hp)

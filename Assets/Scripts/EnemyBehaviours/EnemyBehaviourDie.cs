@@ -10,6 +10,7 @@ public class EnemyBehaviourDie : StateMachineBehaviour
     public Transform center { get;  set; }
     public Collider collider { get; set; }
     public Vector3 push { get; set; }
+    public int dropBoxPercentage { get; set; }
 
     Transform _transform;
 
@@ -29,7 +30,11 @@ public class EnemyBehaviourDie : StateMachineBehaviour
         DOVirtual.DelayedCall(stateInfo.length, () =>
         {
             Destroy(Instantiate(dieExplosionFx, center.position, dieExplosionFx.transform.rotation), 1);
-            Instantiate(dropBoxes[Random.Range(0, dropBoxes.Length)], center.position, _transform.rotation, Level.dropBoxesHolder);
+
+            if (Random.Range(1,101) <= dropBoxPercentage)
+            {
+                Instantiate(dropBoxes[Random.Range(0, dropBoxes.Length)], center.position, _transform.rotation, Level.dropBoxesHolder);
+            }
 
             _transform.DOKill();
             Destroy(animator.gameObject);

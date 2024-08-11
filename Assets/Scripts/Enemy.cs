@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float _dotHitCone;
     [Space]
     [SerializeField] float _takeDamagePushThreshold;
+    [SerializeField,Range(0,100)] int _dropBoxPercentage;
 
     EnemyBehaviourRun _behaviourRun;
     EnemyBehaviourAttack _behaviourAttack;
@@ -63,6 +64,7 @@ public class Enemy : MonoBehaviour
         _behaviourDie.collider = _collider;
         _behaviourDie.dieExplosionFx = _dieExplosionFx;
         _behaviourDie.dropBoxes = _dropBoxes;
+        _behaviourDie.dropBoxPercentage = _dropBoxPercentage;
 
         _behaviourRun.sideSpeed = _sideSpeed;
         _behaviourRun.minPlayerDetectionRadius = _minPlayerDetectionRadius;
