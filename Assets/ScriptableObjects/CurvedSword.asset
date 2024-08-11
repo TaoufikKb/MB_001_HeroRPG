@@ -16,7 +16,7 @@ MonoBehaviour:
   _slashFxPrefab: {fileID: 8525810715913317803, guid: 5c8498de20817054daaa1f794c3d28fb, type: 3}
   _hitFxPrefab: {fileID: 1493123572548342, guid: 0b76d277096f4dc4fad0065918f5c9d3, type: 3}
   _damage: 2
-  _range: 2
+  _range: 3
   _push: 2
   _dotHitCone: 0.9
   _attackSpeed: 5

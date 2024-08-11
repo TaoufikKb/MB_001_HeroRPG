@@ -379,9 +379,13 @@ PrefabInstance:
     - target: {fileID: 1660525120215112514, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
       propertyPath: _weapons.Array.data[0]
       value: 
-      objectReference: {fileID: 584703657}
+      objectReference: {fileID: 1478698327}
     - target: {fileID: 1660525120215112514, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
       propertyPath: _weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 584703657}
+    - target: {fileID: 1660525120215112514, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
+      propertyPath: _weapons.Array.data[2]
       value: 
       objectReference: {fileID: 1856150885}
     - target: {fileID: 3206923099687242354, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
@@ -972,7 +976,7 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 6760085306853012303, guid: 219b257b70b4f7141b0775300478e6f9, type: 3}
     spawnRatePercentage: 5
   _maxEnemiesCount: 100
-  _timeBetweenSpawns: 1
+  _timeBetweenSpawns: 5
   _spawnRadius: 25
 --- !u!4 &768204271
 Transform:
@@ -1801,6 +1805,17 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1478698327 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7246962220707169402, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
+  m_PrefabInstance: {fileID: 337934964}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35323f5e639f8649a9fc8c48eb54f96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1499697377
 GameObject:
   m_ObjectHideFlags: 0
