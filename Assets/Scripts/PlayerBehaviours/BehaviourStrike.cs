@@ -27,7 +27,7 @@ public class BehaviourStrike : StateMachineBehaviour
         float duration = Mathf.Min(stateInfo.length * 0.5f, 0.25f);
         _transform.DOKill();
         _transform.DOMove(targetPosition, duration).SetEase(Ease.OutQuad);
-        _transform.DORotateQuaternion(targetRotation, duration).SetEase(Ease.OutQuad);
+        _transform.DORotateQuaternion(targetRotation, duration).SetEase(Ease.InQuad);
 
     }
 
