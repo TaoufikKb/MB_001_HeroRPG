@@ -29,7 +29,7 @@ public class EnemyBehaviourDie : StateMachineBehaviour
         DOVirtual.DelayedCall(stateInfo.length, () =>
         {
             Destroy(Instantiate(dieExplosionFx, center.position, dieExplosionFx.transform.rotation), 1);
-            Instantiate(dropBoxes[Random.Range(0, dropBoxes.Length)], center.position, _transform.rotation);
+            Instantiate(dropBoxes[Random.Range(0, dropBoxes.Length)], center.position, _transform.rotation, Level.dropBoxesHolder);
 
             _transform.DOKill();
             Destroy(animator.gameObject);

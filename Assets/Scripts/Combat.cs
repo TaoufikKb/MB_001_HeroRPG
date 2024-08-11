@@ -55,4 +55,12 @@ public class Combat : MonoBehaviour
         _hpBar.Init(_maxHp, _hpBarPosition);
 
     }
+
+    public void ResetStats()
+    {
+        isDeath = false;
+
+        currentHp = _maxHp;
+        _hpBar.Init(_maxHp, _hpBarPosition);
+    }
 }

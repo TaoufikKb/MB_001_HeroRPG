@@ -1,6 +1,5 @@
 
 using DG.Tweening;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -151,5 +150,14 @@ public class Player : MonoBehaviour
         _animator.SetTrigger("Revive");
 
         _combat.Revive();
+    }
+
+    public void ResetStats()
+    {
+        _animator.SetTrigger("Revive");
+
+        EquipWeapon(_weapons[Random.Range(0, _weapons.Length)]);
+
+        _combat.ResetStats();
     }
 }

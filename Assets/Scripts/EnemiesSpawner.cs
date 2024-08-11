@@ -47,4 +47,12 @@ public class EnemiesSpawner : MonoBehaviour
         Vector3 position = Player.instance.transform.position + rand * _spawnRadius;
         Instantiate(_enemyPrefab, position, Quaternion.identity, transform);
     }
+
+    public void ClearAllEnemies()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
 }

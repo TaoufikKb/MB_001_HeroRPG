@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public bool isPlaying { get; private set; }
+
+    [SerializeField] EnemiesSpawner _enemiesSpawner;
+    [SerializeField] Level _level;
 
     Player _player;
     UiManager _uiManager;
@@ -33,6 +37,16 @@ public class GameManager : MonoBehaviour
     {
         isPlaying = true;
         _player.Revive();
+    }
+
+    public void RestartGame()
+    {
+        DOTween.KillAll();
+
+        _player.ResetStats();
+
+        _enemiesSpawner.ClearAllEnemies();
+        _level.ClearLevel();
     }
 
     public void EndGame()
