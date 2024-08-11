@@ -282,7 +282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104881682}
   m_LocalRotation: {x: 0.4825182, y: 0, z: 0, w: 0.87588596}
-  m_LocalPosition: {x: 0, y: 13.133666, z: -7.4809337}
+  m_LocalPosition: {x: 0, y: 18.205236, z: -10.687048}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 433532344}
@@ -376,22 +376,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1660525120215112514, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
-      propertyPath: _weapons.Array.data[0]
-      value: 
-      objectReference: {fileID: 1939673147}
-    - target: {fileID: 1660525120215112514, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
-      propertyPath: _weapons.Array.data[1]
-      value: 
-      objectReference: {fileID: 2141287867}
-    - target: {fileID: 1660525120215112514, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
-      propertyPath: _weapons.Array.data[2]
-      value: 
-      objectReference: {fileID: 1496143636}
-    - target: {fileID: 1660525120215112514, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
-      propertyPath: _takeDamagePushThreshold
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3206923099687242354, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
       propertyPath: m_Name
       value: Hero
@@ -646,7 +630,7 @@ MonoBehaviour:
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 14
+  m_CameraDistance: 20
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
@@ -962,9 +946,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPrefabs:
-  - {fileID: 6760085306853012303, guid: c8f546a5bd5dd0846818f48e472d0236, type: 3}
-  - {fileID: 6338573719874630288, guid: 4263d58e2f8676147b7866e7bb0b197d, type: 3}
-  - {fileID: 6760085306853012303, guid: 219b257b70b4f7141b0775300478e6f9, type: 3}
+  - enemyPrefab: {fileID: 6760085306853012303, guid: c8f546a5bd5dd0846818f48e472d0236, type: 3}
+    spawnRatePercentage: 60
+  - enemyPrefab: {fileID: 6338573719874630288, guid: 4263d58e2f8676147b7866e7bb0b197d, type: 3}
+    spawnRatePercentage: 30
+  - enemyPrefab: {fileID: 6760085306853012303, guid: 219b257b70b4f7141b0775300478e6f9, type: 3}
+    spawnRatePercentage: 10
   _maxEnemiesCount: 100
   _timeBetweenSpawns: 1
   _spawnRadius: 4
@@ -1722,7 +1709,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1459999128}
   m_LocalRotation: {x: 0.4825182, y: -0, z: -0, w: 0.87588596}
-  m_LocalPosition: {x: 0, y: 13.133666, z: -7.4809337}
+  m_LocalPosition: {x: 0, y: 18.205236, z: -10.687048}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1845574833}
@@ -1795,17 +1782,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1496143636 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7246962220707169402, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
-  m_PrefabInstance: {fileID: 337934964}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b35323f5e639f8649a9fc8c48eb54f96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1499697377
 GameObject:
   m_ObjectHideFlags: 0
@@ -2082,17 +2058,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1939673147 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 864825128609866575, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
-  m_PrefabInstance: {fileID: 337934964}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b35323f5e639f8649a9fc8c48eb54f96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2026574071
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,17 +2226,6 @@ MonoBehaviour:
   _innerStickImage: {fileID: 1687686928}
   _innerStick: {fileID: 1687686927}
   _joystickRadius: 150
---- !u!114 &2141287867 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5805239132521326661, guid: 89de4008f8cc87d4a8e2924ba9d12eb7, type: 3}
-  m_PrefabInstance: {fileID: 337934964}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b35323f5e639f8649a9fc8c48eb54f96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2141811028
 GameObject:
   m_ObjectHideFlags: 0
@@ -7447,7 +7401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!111 &1194787839318831073
 Animation:
   m_ObjectHideFlags: 0

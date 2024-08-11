@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemiesSpawner : MonoBehaviour
 {
-    [SerializeField] Enemy[] _enemyPrefabs;
+    [SerializeField] EnemySpawnRate[] _enemyPrefabs;
 
     [Header("Settings")]
     [SerializeField] int _maxEnemiesCount;
@@ -18,7 +18,7 @@ public class EnemiesSpawner : MonoBehaviour
     void Start()
     {
         _count = 0;
-        _spawnTime = Time.time- _timeBetweenSpawns;
+        _spawnTime = Time.time - _timeBetweenSpawns;
 
         _gameManager = GameManager.instance;
     }
@@ -29,7 +29,7 @@ public class EnemiesSpawner : MonoBehaviour
         if (!_gameManager.isPlaying)
             return;
 
-        if (_count <_maxEnemiesCount && Time.time > _spawnTime+_timeBetweenSpawns)
+        if (_count < _maxEnemiesCount && Time.time > _spawnTime + _timeBetweenSpawns)
         {
             _spawnTime = Time.time;
 
@@ -40,12 +40,20 @@ public class EnemiesSpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Vector3 rand = Random.onUnitSphere;
-        rand.y = 0;
-        rand.Normalize();
+        int rand = Random.Range(1, 101);
+        int index = 0;
+        while (rand > _enemyPrefabs[index].spawnRatePercentage)
+        {
+            rand -= _enemyPrefabs[index].spawnRatePercentage;
+            index++;
+        }
 
-        Vector3 position = Player.instance.transform.position + rand * _spawnRadius;
-        Instantiate(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Length)], position, Quaternion.identity, transform);
+        Vector3 randVect = Random.onUnitSphere;
+        randVect.y = 0;
+        randVect.Normalize();
+
+        Vector3 position = Player.instance.transform.position + randVect * _spawnRadius;
+        Instantiate(_enemyPrefabs[index].enemyPrefab, position, Quaternion.identity, transform);
     }
 
     public void ClearAllEnemies()
@@ -55,4 +63,11 @@ public class EnemiesSpawner : MonoBehaviour
             Destroy(child.gameObject);
         }
     }
+}
+
+[System.Serializable]
+public struct EnemySpawnRate
+{
+    public Enemy enemyPrefab;
+    [Range(0, 100)] public int spawnRatePercentage;
 }

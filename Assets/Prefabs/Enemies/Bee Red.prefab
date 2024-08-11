@@ -19,6 +19,14 @@ PrefabInstance:
       propertyPath: _timeBetweenAttacks
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1634794950136158548, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
+      propertyPath: _maxPlayerDetectionRadius
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1634794950136158548, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
+      propertyPath: _minPlayerDetectionRadius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 242664386099622570, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

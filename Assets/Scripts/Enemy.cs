@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour
 
         if (isDeath)
         {
-            _behaviourDie.push = Mathf.Max(3, push*2) * direction;
+            _behaviourDie.push = Mathf.Max(3, push) * direction;
             _animator.SetTrigger("Die");
         }
         else
