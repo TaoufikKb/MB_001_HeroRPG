@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] Transform _endGameUI;
     [SerializeField] Transform _startGameUI;
     [SerializeField] Image _weaponIcon;
+    [SerializeField] TextMeshProUGUI _pointsTxt;
 
     void Awake()
     {
@@ -40,5 +42,18 @@ public class UiManager : MonoBehaviour
     public void ShowStartGameUI(bool show)
     {
         _startGameUI.gameObject.SetActive(show);
+    }
+
+    public void UpdatePointsUI(int points)
+    {
+        _pointsTxt.transform.DOKill(true);
+        _pointsTxt.transform.DOPunchScale(Vector3.one * 0.125f, 0.25f);
+
+        DOTween.Kill(_pointsTxt);
+        DOVirtual.Float(int.Parse(_pointsTxt.text), points, 0.5f, (f) =>
+        {
+            _pointsTxt.text = "" + (int)f;
+
+        }).SetEase(Ease.OutQuad).SetId(_pointsTxt);
     }
 }

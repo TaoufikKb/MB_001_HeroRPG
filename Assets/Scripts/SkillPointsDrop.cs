@@ -44,6 +44,8 @@ public class SkillPointsDrop : MonoBehaviour, ICollectible
         {
             Destroy(gameObject);
             Destroy(Instantiate(_collectFx, transform.position, transform.rotation), 1);
+
+            GameManager.instance.AddPoints(1);
         });
 
 

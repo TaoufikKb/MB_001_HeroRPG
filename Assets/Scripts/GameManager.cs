@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public int points { get; private set; }
     public bool isPlaying { get; private set; }
 
     [SerializeField] EnemiesSpawner _enemiesSpawner;
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
 
         _uiManager = UiManager.instance;
         _player = Player.instance;
+
+        SetPoints(0);
     }
 
 
@@ -47,6 +50,8 @@ public class GameManager : MonoBehaviour
 
         _enemiesSpawner.ClearAllEnemies();
         _level.ClearLevel();
+
+        SetPoints(0);
     }
 
     public void EndGame()
@@ -54,5 +59,16 @@ public class GameManager : MonoBehaviour
         isPlaying = false;
 
         _uiManager.ShowEndGameUI(true);
+    }
+
+    public void AddPoints(int add)
+    {
+        SetPoints(points + add);
+    }
+
+    void SetPoints(int points)
+    {
+        this.points = points;
+        _uiManager.UpdatePointsUI(points);
     }
 }
