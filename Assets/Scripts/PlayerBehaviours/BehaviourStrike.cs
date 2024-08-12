@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class BehaviourStrike : StateMachineBehaviour
 {
+    public AudioManager audioManager { get; set; }
     public Weapon weapon { get; set; }
     public Collider targetCollider { get; set; }
     public DamageFeedback damageFeedback { get; set; }
@@ -70,6 +71,8 @@ public class BehaviourStrike : StateMachineBehaviour
         slashObj.transform.localScale = weaponData.range * Vector3.one;
         Destroy(slashObj, 1);
 
+        audioManager.PlaySwordWhoosh(weaponData.weaponMaterialType);
+
         Collider[] enemiesColliders = Physics.OverlapCapsule(_transform.position, _transform.position + Vector3.up * 10, weaponData.range, LayerMask.GetMask("Enemy"));
 
         foreach (var enemy in enemiesColliders)
@@ -84,6 +87,7 @@ public class BehaviourStrike : StateMachineBehaviour
 
                 Destroy(Instantiate(damageFeedback).Init(damage, enemy.transform.position + Vector3.up + Random.onUnitSphere * 0.5f), 1);
 
+                audioManager.PlayHit();
 
                 GameObject hitObj = Instantiate(weaponData.hitFxPrefab, enemy.transform.position + Vector3.up, _transform.rotation);
                 hitObj.transform.localScale = enemy.bounds.size;

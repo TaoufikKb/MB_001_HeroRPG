@@ -34,8 +34,8 @@ public class Player : MonoBehaviour
     BehaviourTakeDamage _behaviourTakeDamage;
     BehaviourDie _behaviourDie;
 
+    AudioManager _audioManager;
     Weapon _weapon;
-
 
     void Awake()
     {
@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
+        _audioManager = AudioManager.instance;
+
         _behaviourRun = _animator.GetBehaviour<BehaviourRun>();
         _behaviourIdle = _animator.GetBehaviour<BehaviourIdle>();
         _behaviourStrike = _animator.GetBehaviour<BehaviourStrike>();
@@ -58,6 +60,7 @@ public class Player : MonoBehaviour
     {
         _behaviourIdle.rightHandIK = _rightHandIK;
         _behaviourStrike.damageFeedback = _damageFeedback;
+        _behaviourStrike.audioManager = _audioManager;
         _behaviourTakeDamage.root = _root;
         _behaviourDie.collider = _collider;
     }
@@ -166,6 +169,11 @@ public class Player : MonoBehaviour
         EquipWeapon(_weapons[Random.Range(0, _weapons.Length)]);
 
         _combat.ResetStats();
+    }
+
+    public void PlayFootstepSound()
+    {
+        _audioManager.PlayFootsteps();
     }
 
     private void OnTriggerEnter(Collider other)

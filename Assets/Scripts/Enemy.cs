@@ -87,6 +87,7 @@ public class Enemy : MonoBehaviour
         _behaviourAttack.pushPower = _pushPower;
         _behaviourAttack.range = _range;
         _behaviourAttack.dotHitCone = _dotHitCone;
+        _behaviourAttack.audioManager = AudioManager.instance;
     }
 
 

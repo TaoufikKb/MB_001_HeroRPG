@@ -16,6 +16,7 @@ public class Combat : MonoBehaviour
     [Header("Settings")]
     [SerializeField] int _maxHp;
 
+
     void Awake()
     {
         currentHp = _maxHp;

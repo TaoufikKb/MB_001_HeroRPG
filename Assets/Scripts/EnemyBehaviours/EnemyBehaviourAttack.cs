@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class EnemyBehaviourAttack : StateMachineBehaviour
 {
+    public AudioManager audioManager { get; set; }
     public DamageFeedback damageFeedback { get; set; }
     public GameObject slashFxPrefab { get; set; }
     public GameObject hitFxPrefab { get; set; }
@@ -89,6 +90,8 @@ public class EnemyBehaviourAttack : StateMachineBehaviour
             GameObject hitObj = Instantiate(hitFxPrefab, _targetCollider.transform.position + Vector3.up, _transform.rotation);
             hitObj.transform.localScale = _targetCollider.bounds.size;
             Destroy(hitObj, 1);
+
+            audioManager.PlayHit();
         }
     }
 }
