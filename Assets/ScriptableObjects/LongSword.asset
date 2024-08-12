@@ -20,4 +20,4 @@ MonoBehaviour:
   _push: 3
   _dotHitCone: 0
   _attackSpeed: 2
-  _movementSpeed: 6
+  _movementSpeed: 8
