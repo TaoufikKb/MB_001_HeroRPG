@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
         _behaviourDie = _animator.GetBehaviour<BehaviourDie>();
 
         InitBehaviours();
-        EquipWeapon(_weapons[0]);
+        EquipWeapon(_weapons[Random.Range(0, _weapons.Length)]);
         InitEvents();
     }
 
@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
         _behaviourStrike.ApplyDamage();
     }
 
-    public void TakeDamage(int damage, float push,Vector3 direction)
+    public void TakeDamage(int damage, float push, Vector3 direction)
     {
         if (_combat.isDeath)
             return;
@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
 
         if (isDeath)
         {
-            _behaviourDie.push = Mathf.Max(5, push*2) * direction;
+            _behaviourDie.push = Mathf.Max(5, push * 2) * direction;
             _animator.SetTrigger("Die");
         }
         else

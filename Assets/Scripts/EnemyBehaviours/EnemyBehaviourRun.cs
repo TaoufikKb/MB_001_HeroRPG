@@ -11,6 +11,8 @@ public class EnemyBehaviourRun : StateMachineBehaviour
     public float maxPlayerDetectionRadius { get; set; }
     public float sideSpeed { get; set; }
 
+    GameManager _gameManager;
+
     Transform _transform;
     Transform _player;
 
@@ -29,6 +31,8 @@ public class EnemyBehaviourRun : StateMachineBehaviour
         _randomY = Random.Range(0f, 2f);
 
         _attackTime = Time.time;
+
+        _gameManager = GameManager.instance;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -51,7 +55,7 @@ public class EnemyBehaviourRun : StateMachineBehaviour
         {
             _attackTime = Time.time;
         }
-        else if (Time.time > _attackTime + timeBetweenAttacks)
+        else if (_gameManager.isPlaying && Time.time > _attackTime + timeBetweenAttacks)
         {
             animator.SetTrigger("Attack");
         }

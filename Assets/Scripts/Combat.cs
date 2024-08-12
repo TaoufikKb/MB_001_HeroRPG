@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class Combat : MonoBehaviour
 {
-    public UnityEvent onDeath {  get; private set; }
+    public UnityEvent onDeath { get; private set; } = new UnityEvent();
     public int currentHp {  get; private set; }
     public bool isDeath {  get; private set; }
 

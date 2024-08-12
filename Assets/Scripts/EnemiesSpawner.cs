@@ -8,17 +8,20 @@ public class EnemiesSpawner : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] int _maxEnemiesCount;
+    [SerializeField] float _enemiesCountIncreasePerKill;
     [SerializeField] float _timeBetweenSpawns;
     [SerializeField] float _spawnRadius;
 
     GameManager _gameManager;
+    float _maxCount;
     int _count;
     float _spawnTime;
 
     void Start()
     {
         _count = 0;
-        _spawnTime = Time.time - _timeBetweenSpawns;
+        _maxCount = 1;
+        _spawnTime = Time.time;
 
         _gameManager = GameManager.instance;
     }
@@ -27,9 +30,12 @@ public class EnemiesSpawner : MonoBehaviour
     void Update()
     {
         if (!_gameManager.isPlaying)
+        {
+            _spawnTime = Time.time;
             return;
+        }
 
-        if (_count < _maxEnemiesCount && Time.time > _spawnTime + _timeBetweenSpawns)
+        if (_count < _maxCount && Time.time > _spawnTime + _timeBetweenSpawns)
         {
             _spawnTime = Time.time;
 
@@ -53,7 +59,14 @@ public class EnemiesSpawner : MonoBehaviour
         randVect.Normalize();
 
         Vector3 position = Player.instance.transform.position + randVect * _spawnRadius;
-        Instantiate(_enemyPrefabs[index].enemyPrefab, position, Quaternion.identity, transform);
+
+        Enemy enemy = Instantiate(_enemyPrefabs[index].enemyPrefab, position, Quaternion.identity, transform);
+
+        enemy.combat.onDeath.AddListener(() => 
+        {
+            _count--;
+            _maxCount = Mathf.Min(_maxEnemiesCount, _maxCount + _enemiesCountIncreasePerKill);
+        });
     }
 
     public void ClearAllEnemies()
@@ -62,6 +75,18 @@ public class EnemiesSpawner : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+
+    public void KillAllEnemies()
+    {
+        Enemy[] enemies = GetComponentsInChildren<Enemy>();
+
+        foreach (var enemy in enemies)
+        {
+            enemy.TakeDamage(9999, 6, -enemy.transform.forward);
+        }
+
+        _spawnTime = Time.time + 3;
     }
 }
 

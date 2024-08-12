@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public Combat combat => _combat;
+
     [SerializeField] Combat _combat;
     [SerializeField] DamageFeedback _damageFeedback;
     [SerializeField] Animator _animator;
