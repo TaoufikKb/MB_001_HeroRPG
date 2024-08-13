@@ -7,6 +7,8 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip[] _coinClips;
+    [SerializeField] AudioClip[] _clicksClips;
     [SerializeField] AudioClip[] _swordMetalWhooshClips;
     [SerializeField] AudioClip[] _swordWoodWhooshClips;
     [SerializeField] AudioClip[] _hitClips;
@@ -50,5 +52,17 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource.pitch *= 1 + Random.Range(-_randomPitchPercent, _randomPitchPercent);
         _audioSource.PlayOneShot(_footstepsClips[Random.Range(0, _footstepsClips.Length)]);
+    }
+
+    public void PlayCoin()
+    {
+        _audioSource.pitch *= 1 + Random.Range(-_randomPitchPercent, _randomPitchPercent);
+        _audioSource.PlayOneShot(_coinClips[Random.Range(0, _coinClips.Length)]);
+    }
+
+    public void PlayClick()
+    {
+        _audioSource.pitch *= 1 + Random.Range(-_randomPitchPercent, _randomPitchPercent);
+        _audioSource.PlayOneShot(_clicksClips[Random.Range(0, _clicksClips.Length)]);
     }
 }

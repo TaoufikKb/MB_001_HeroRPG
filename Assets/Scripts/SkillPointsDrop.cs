@@ -36,18 +36,22 @@ public class SkillPointsDrop : MonoBehaviour, ICollectible
         _isCollected = true;
 
 
-        Player player = Player.instance;
-        transform.parent = player.transform;
+        Transform player = Player.instance.transform;
 
+        float rand = Random.Range(-1f, 1f);
+        Vector3 startPos= transform.position; 
         transform.DOKill();
-        transform.DOLocalMove(Vector3.up * 0.5f, 0.5f).SetEase(Ease.InBack).OnComplete(() =>
+        DOVirtual.Float(0, 1, 1f, (f) =>
+        {
+            transform.position = Vector3.LerpUnclamped(startPos, player.position+ Vector3.up * 0.5f, f);
+            transform.position = Quaternion.Euler(Vector3.up * rand* f *360) * (transform.position - player.position) + player.position;
+        }).SetEase(Ease.InBack).OnComplete(() =>
         {
             Destroy(gameObject);
             Destroy(Instantiate(_collectFx, transform.position, transform.rotation), 1);
 
             GameManager.instance.AddPoints(1);
-        });
-
-
+            AudioManager.instance.PlayCoin();
+        }); 
     }
 }
