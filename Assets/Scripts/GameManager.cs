@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         isPlaying = true;
         _enemiesSpawner.KillAllEnemies();
 
-        DOVirtual.DelayedCall(0.25f, _player.Revive);
+        DOVirtual.DelayedCall(1, _player.Revive);
     }
 
     public void RestartGame()

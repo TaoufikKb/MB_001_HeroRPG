@@ -13,16 +13,17 @@ public class Combat : MonoBehaviour
     [SerializeField] HpBar _hpBar;
     [SerializeField] Transform _hpBarPosition;
 
-    [Header("Settings")]
-    [SerializeField] int _maxHp;
-
+    int _maxHp;
 
     void Awake()
     {
         currentHp = _maxHp;
     }
-    void Start()
+    public void Init(int maxHP)
     {
+        _maxHp= maxHP;
+        currentHp = _maxHp;
+
         _hpBar.Init(_maxHp, _hpBarPosition);
 
         _hpBar.transform.localScale = Vector3.zero;

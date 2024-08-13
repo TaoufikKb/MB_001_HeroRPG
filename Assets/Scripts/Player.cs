@@ -12,8 +12,9 @@ public class Player : MonoBehaviour
     public WeaponData currentWeaponData => _weapon.data;
     public new Collider collider => _collider;
 
+    [SerializeField] PlayerData _playerData;
+    [Space]
     [SerializeField] TwoBoneIKConstraint _rightHandIK;
-    [SerializeField] DamageFeedback _damageFeedback;
     [SerializeField] Combat _combat;
     [SerializeField] Animator _animator;
     [SerializeField] Transform _weaponSlot;
@@ -24,9 +25,6 @@ public class Player : MonoBehaviour
     [Space]
     [SerializeField] ParticleSystem _collectWeapnFx;
     [SerializeField] ParticleSystem _weapnSpawnFx;
-
-    [Header("Fight Settings")]
-    [SerializeField] float _takeDamagePushThreshold;
 
     BehaviourRun _behaviourRun;
     BehaviourIdle _behaviourIdle;
@@ -45,6 +43,8 @@ public class Player : MonoBehaviour
     {
         _audioManager = AudioManager.instance;
 
+        _combat.Init(_playerData.maxHp);
+
         _behaviourRun = _animator.GetBehaviour<BehaviourRun>();
         _behaviourIdle = _animator.GetBehaviour<BehaviourIdle>();
         _behaviourStrike = _animator.GetBehaviour<BehaviourStrike>();
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
     void InitBehaviours()
     {
         _behaviourIdle.rightHandIK = _rightHandIK;
-        _behaviourStrike.damageFeedback = _damageFeedback;
+        _behaviourStrike.damageFeedback = _playerData.damageFeedback;
         _behaviourStrike.audioManager = _audioManager;
         _behaviourTakeDamage.root = _root;
         _behaviourDie.collider = _collider;
@@ -123,9 +123,9 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (push > _takeDamagePushThreshold)
+            if (push > _playerData.takeDamagePushThreshold)
             {
-                _behaviourTakeDamage.push = (push - _takeDamagePushThreshold) * direction;
+                _behaviourTakeDamage.push = (push - _playerData.takeDamagePushThreshold) * direction;
                 _animator.SetTrigger("TakeDamageHeavy");
             }
             else

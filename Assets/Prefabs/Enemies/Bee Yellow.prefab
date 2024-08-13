@@ -16,6 +16,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -1634794950136158548, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
+      propertyPath: _enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 243b04a2fe0eaa24b858bcfa3aa712d9, type: 2}
+    - target: {fileID: -1634794950136158548, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
       propertyPath: _pushPower
       value: 5
       objectReference: {fileID: 0}
@@ -119,6 +123,10 @@ PrefabInstance:
       propertyPath: _maxHp
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4675056324143367152, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
+      propertyPath: _enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 243b04a2fe0eaa24b858bcfa3aa712d9, type: 2}
     - target: {fileID: 6926839794849704639, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

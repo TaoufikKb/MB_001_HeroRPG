@@ -16,6 +16,10 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -1634794950136158548, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
+      propertyPath: _enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7d48add4dcc805b42bf692f14a96ab3b, type: 2}
+    - target: {fileID: -1634794950136158548, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
       propertyPath: _pushPower
       value: 10
       objectReference: {fileID: 0}
@@ -121,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1358921057130329688, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
       propertyPath: m_Name
-      value: bee Green
+      value: Bee Green
       objectReference: {fileID: 0}
     - target: {fileID: 4120781393186507716, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -143,6 +147,10 @@ PrefabInstance:
       propertyPath: _maxHp
       value: 56
       objectReference: {fileID: 0}
+    - target: {fileID: 4675056324143367152, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
+      propertyPath: _enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7d48add4dcc805b42bf692f14a96ab3b, type: 2}
     - target: {fileID: 5312910579808150415, guid: 41e04faa14fb7a34e8b16750ec910fc3, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
