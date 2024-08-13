@@ -69,12 +69,16 @@ public class EnemiesSpawner : MonoBehaviour
         });
     }
 
-    public void ClearAllEnemies()
+    public void Restart()
     {
         foreach (Transform child in transform)
         {
             Destroy(child.gameObject);
         }
+
+        _count = 0;
+        _maxCount = 1;
+        _spawnTime = Time.time;
     }
 
     public void KillAllEnemies()

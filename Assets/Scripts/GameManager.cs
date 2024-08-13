@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 
         _player.ResetStats();
 
-        _enemiesSpawner.ClearAllEnemies();
+        _enemiesSpawner.Restart();
         _level.ClearLevel();
 
         SetPoints(0);

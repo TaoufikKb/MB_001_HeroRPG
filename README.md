@@ -3,7 +3,7 @@
 - 6 days
 
 ## Challenges I Faced
-- Working with character animations was difficult because they were generic. I prefer humanoid animations for ease of use when adding avatar masks, IK, curves, etc.
+- Working with character animations was slightly tricky because they were generic. I prefer humanoid animations for ease of use when adding avatar masks, IK, curves, etc.
 - Finding suitable UI sprites that matched the theme.
 - Sourcing appropriate SFX for both gameplay and UI.
 
@@ -13,7 +13,7 @@
 - **Game Design:** I could further tweak values to improve the game feel.
 - **Enemy Spawning:** I could make the system more sophisticated, with waves and better control over the spawn rate.
 
-## Potential Enhancements
+## Potential Additional Enhancements
 - Add more enemy types and bosses.
 - Introduce a map or compass to locate enemies and drop boxes.
 - Add more weapons.
@@ -24,6 +24,9 @@
 - Include more collectibles with various purposes (e.g., diamonds, crystals, coins, etc.).
 - Possibly add a shop and more skins.
 - Consider adding more levels.
+- Add Camera Shake.
+- Test Android build on more devices.
+- Optimize performance.
 
 ## Comments
 - **External Assets Used:**
